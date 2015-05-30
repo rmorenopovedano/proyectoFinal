@@ -5,12 +5,12 @@ public class Masajista extends Miembro implements Sueldos {
 	private int annosExperiencia;
 
 	public Masajista(String nombre, String apellido1, String apellido2,
-			String añoNacimiento, Categoria categoria, float sueldo,
-			int partidosJugados, TitulacionMasajista titulacion,
-			int annosExperiencia) throws NombreInvalidoException,
-			ApellidoInvalidoException, AñoNacimientoInvalidoException,
-			ValorNegativoException {
-		super(Tipo.MASAJISTA, nombre, apellido1, apellido2, añoNacimiento, categoria);
+			String añoNacimiento, Categoria categoria,
+			TitulacionMasajista titulacion, int annosExperiencia)
+			throws NombreInvalidoException, ApellidoInvalidoException,
+			AñoNacimientoInvalidoException, ValorNegativoException {
+		super(Tipo.MASAJISTA, nombre, apellido1, apellido2, añoNacimiento,
+				categoria);
 		setTitulacion(titulacion);
 		setAnnosExperiencia(annosExperiencia);
 		super.setSueldo(calcularSueldo(Miembro.getSueldoBase()));

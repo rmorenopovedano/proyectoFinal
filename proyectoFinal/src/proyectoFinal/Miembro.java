@@ -12,6 +12,8 @@ public class Miembro implements Serializable, Comparable<Miembro> {
 	private String nombre;
 	static private final Pattern patronNombre = Pattern
 			.compile("^[A-Za-z\\s\\.ÁáÉéÍíÓóÚúÚüÄäËëÏïOöÑñ]{2,20}$");
+	static private final Pattern patronFecha = Pattern
+			.compile("(19[0-9][0-9])|(20[0-9][0-9])");
 	private String apellido1;
 	private String apellido2;
 	private String annoNacimiento;
@@ -36,6 +38,7 @@ public class Miembro implements Serializable, Comparable<Miembro> {
 		setCategoria(categoria);
 		setFechaAlta();
 		setId();
+		setTipo(tipo);
 		this.sueldo = SUELDO_BASE;
 		// selecciones = new ArrayList<Selecciones>();
 	}
@@ -83,10 +86,14 @@ public class Miembro implements Serializable, Comparable<Miembro> {
 
 	public void setAñoNacimiento(String añoNacimiento)
 			throws AñoNacimientoInvalidoException {
-		if (esFechaValida(añoNacimiento))
+		if (esFechaValida(añoNacimiento) == 0)
 			this.annoNacimiento = añoNacimiento;
+		else if (esFechaValida(añoNacimiento) == 1)
+			throw new AñoNacimientoInvalidoException(
+					"Año no válido. El niño es demasiado pequeño.");
 		else
-			throw new AñoNacimientoInvalidoException("Año no válido");
+			throw new AñoNacimientoInvalidoException(
+					"Año no válido. Verifique el formato.");
 	}
 
 	public Categoria getCategoria() {
@@ -175,14 +182,17 @@ public class Miembro implements Serializable, Comparable<Miembro> {
 		return patronNombre.matcher(nombre).matches();
 	}
 
-	public static boolean esFechaValida(String annoNacimiento) {
+	public static int esFechaValida(String annoNacimiento) {
+		if (!patronFecha.matcher(annoNacimiento).matches())
+			return 2; // Error de patrón no válido.
 		SimpleDateFormat formato = new SimpleDateFormat("yyyy");
 		int diferencia = Integer.parseInt(formato.format(new Date()))
 				- Integer.parseInt(annoNacimiento);
-		if (diferencia < 6) {
-			return false;
-		}
-		return true;
+		if (diferencia < 0)
+			return 2; // Error de año mayor que el actual
+		if (diferencia < 6)
+			return 1; // Error de niño demasiado pequeño
+		return 0; // Todo OK.
 	}
 
 	@Override
@@ -240,9 +250,24 @@ public class Miembro implements Serializable, Comparable<Miembro> {
 				+ fechaAlta + ", id=" + id + ", sueldo=" + sueldo + "]";
 	}
 
-	/*
-	 * @Override public int compareTo(Miembro arg0) { Miembro.compare(arg0,
-	 * arg1); return 0; }
-	 */
+	@Override
+	public int compareTo(Miembro miembro) {
+		int resultado = 0;
+		if (this.apellido1.compareTo(miembro.apellido1) < 0)
+			resultado = -1;// El apellido1 del primer miembro es menor
+		else if (this.apellido1.compareTo(miembro.apellido1) > 0)
+			resultado = 1;// El apellido1 del primero miembro es mayor
+		else {
+			if (this.apellido2.compareTo(miembro.apellido2) < 0)
+				resultado = -1;// El apellido2 del primer miembro es menor
+			else if (this.apellido2.compareTo(miembro.apellido2) > 0)
+				resultado = 1;// El apellido2 del primer miembro es mayor
+			else
+				resultado = 0;// Los 2 apellidos son iguales
+		}
+
+		return resultado;
+
+	}
 
 }

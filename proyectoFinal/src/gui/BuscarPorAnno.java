@@ -84,13 +84,7 @@ public class BuscarPorAnno extends JDialog {
 		ArrayList<Miembro> arraylist = club.getMiembrosPorAnno(fechaAlta);
 		Club clubPorAnno = new Club();
 		for (Miembro miembro : arraylist) {
-			try {
-				clubPorAnno.annadir(miembro);
-			} catch (MiembroYaExisteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-
-			}
+			clubPorAnno.annadir(miembro);
 		}
 
 		return clubPorAnno;

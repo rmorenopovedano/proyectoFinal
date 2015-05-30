@@ -75,13 +75,7 @@ public class BuscarCategoria extends JDialog {
 		ArrayList<Miembro> arraylist = club.getMiembrosCategoria(categoria);
 		Club clubPorCategoria = new Club();
 		for (Miembro miembro : arraylist) {
-			try {
-				clubPorCategoria.annadir(miembro);
-			} catch (MiembroYaExisteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-
-			}
+			clubPorCategoria.annadir(miembro);
 		}
 
 		return clubPorCategoria;

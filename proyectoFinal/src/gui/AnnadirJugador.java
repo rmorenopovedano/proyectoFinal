@@ -175,9 +175,8 @@ public class AnnadirJugador extends JDialog {
 											.getSelectedValue(),
 									(int) spinnerGoles.getValue()));
 							JOptionPane.showMessageDialog(null, "Jugador añadido con éxito");
-							System.out.println(club.toString());
-						} catch (MiembroYaExisteException
-								| NombreInvalidoException
+							club.setModificado(true);
+						} catch (NombreInvalidoException
 								| ApellidoInvalidoException
 								| AñoNacimientoInvalidoException
 								| ValorNegativoException e) {

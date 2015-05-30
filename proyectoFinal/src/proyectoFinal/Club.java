@@ -13,10 +13,7 @@ public class Club implements Serializable {
 	private final String nombreClub = "C.D. Modas Levante";
 	private boolean modificado;
 
-	public void annadir(Miembro miembro) throws MiembroYaExisteException {
-		if (plantilla.contains(miembro))
-			throw new MiembroYaExisteException(
-					"Este miembro ya pertenece al club");
+	public void annadir(Miembro miembro) {
 		plantilla.add(miembro);
 	}
 
@@ -58,11 +55,45 @@ public class Club implements Serializable {
 		for (Miembro miembro : plantilla) {
 			if (miembro instanceof Jugador) {
 				arrJugadores[conta] = miembro.getId() + ".- "
-						+ miembro.getNombre() + " " + miembro.getApellido1();
+						+ miembro.getNombre() + " " + miembro.getApellido1()+ " "+miembro.getApellido2();
 				conta++;
 			}
 		}
 		return arrJugadores;
+	}
+	public String[] getEntrenadoresParaLista() {
+		int tamano = 0;
+		for (Miembro miembro : plantilla) {
+			if (miembro instanceof Entrenador)
+				tamano++;
+		}
+		String[] arrEntrenadores = new String[tamano];
+		int conta = 0;
+		for (Miembro miembro : plantilla) {
+			if (miembro instanceof Entrenador) {
+				arrEntrenadores[conta] = miembro.getId() + ".- "
+						+ miembro.getNombre() + " " + miembro.getApellido1()+ " "+miembro.getApellido2();
+				conta++;
+			}
+		}
+		return arrEntrenadores;
+	}
+	public String[] getMasajistasParaLista() {
+		int tamano = 0;
+		for (Miembro miembro : plantilla) {
+			if (miembro instanceof Masajista)
+				tamano++;
+		}
+		String[] arrMasajistas = new String[tamano];
+		int conta = 0;
+		for (Miembro miembro : plantilla) {
+			if (miembro instanceof Masajista) {
+				arrMasajistas[conta] = miembro.getId() + ".- "
+						+ miembro.getNombre() + " " + miembro.getApellido1()+ " "+miembro.getApellido2();
+				conta++;
+			}
+		}
+		return arrMasajistas;
 	}
 
 	public String[] getMiembrosParaLista() {
@@ -70,15 +101,15 @@ public class Club implements Serializable {
 		for (Miembro miembro : plantilla) {
 			tamano++;
 		}
-		String[] arrJugadores = new String[tamano];
+		String[] arrMiembros = new String[tamano];
 		int conta = 0;
 		for (Miembro miembro : plantilla) {
-			arrJugadores[conta] = miembro.getId() + ".- " + miembro.getNombre()
-					+ " " + miembro.getApellido1();
+			arrMiembros[conta] = miembro.getId() + ".- " + miembro.getNombre()
+					+ " " + miembro.getApellido1()+" "+miembro.getApellido2();
 			conta++;
 
 		}
-		return arrJugadores;
+		return arrMiembros;
 	}
 	public ArrayList<Miembro> getMiembrosPorAnno(String fechaAlta) {
 		ArrayList<Miembro> arrMiembrosPorAnno = new ArrayList<Miembro>();
@@ -88,6 +119,15 @@ public class Club implements Serializable {
 				arrMiembrosPorAnno.add(miembro);
 		}
 		return arrMiembrosPorAnno;
+	}
+	
+	public ArrayList<Miembro> getMiembrosPorTipo(Tipo tipo) {
+		ArrayList<Miembro> array = new ArrayList<Miembro>();
+		for (Miembro miembro : plantilla) {
+			if (miembro.getTipo().equals(tipo))
+				array.add(miembro);
+		}
+		return array;
 	}
 
 	public boolean isModificado() {
@@ -126,4 +166,13 @@ public class Club implements Serializable {
 		Collections.sort(plantilla);
 	}
 
+	public Club getClubFiltradoTipo(Tipo tipo) {
+		ArrayList<Miembro> arraylist = getMiembrosPorTipo(tipo);
+		Club clubEntrenadores = new Club();
+		for (Miembro miembro : arraylist) {
+				clubEntrenadores.annadir(miembro);
+		}
+
+		return clubEntrenadores;
+	}
 }

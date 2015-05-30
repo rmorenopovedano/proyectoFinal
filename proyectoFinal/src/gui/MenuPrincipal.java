@@ -2,25 +2,39 @@ package gui;
 
 import java.awt.EventQueue;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import proyectoFinal.Club;
+import proyectoFinal.Fichero;
+import proyectoFinal.Tipo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class MenuPrincipal {
 
-	private JFrame frmMenuPrincipal;
+	private JFrame frame;
 	private AnnadirJugador annadirJugador;
+	private AnnadirEntrenador annadirEntrenador;
+	private AnnadirMasajista annadirMasajista;
 	private MostrarJugador mostrarJugador;
+	private MostrarEntrenador mostrarEntrenador;
+	private MostrarMasajista mostrarMasajista;
 	private BuscarCategoria buscarCategoria;
 	private BuscarPorAnno buscarAnno;
 	private Club club = new Club();
+	private File fichero;
+	private JFileChooser filechooser = new JFileChooser();
 
 	/**
 	 * Launch the application.
@@ -30,7 +44,7 @@ public class MenuPrincipal {
 			public void run() {
 				try {
 					MenuPrincipal window = new MenuPrincipal();
-					window.frmMenuPrincipal.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,92 +63,267 @@ public class MenuPrincipal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmMenuPrincipal = new JFrame();
-		frmMenuPrincipal.setTitle("Menu Principal");
-		frmMenuPrincipal.setBounds(100, 100, 450, 300);
-		frmMenuPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		filechooser.setFileFilter(new FileNameExtensionFilter("Archivos Tipo .obj",
+				"obj"));
+		frame = new JFrame();
+		frame.setTitle("Menu Principal");
+		frame.setBounds(100, 100, 450, 300);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				if (comprobarCambios())
+					System.exit(0);
+			}
+		});
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
 		JMenuBar menuBar = new JMenuBar();
-		frmMenuPrincipal.setJMenuBar(menuBar);
-		
+		frame.setJMenuBar(menuBar);
+
 		JMenu mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
-		
+
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
+		mntmNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comprobarCambios()){
+					fichero = null;
+					frame.setTitle("Sin Titulo - C.D. Modas Levante");
+					club = new Club();
+				}
+			}
+		});
 		mnArchivo.add(mntmNuevo);
-		
+
 		JMenuItem mntmAbrir = new JMenuItem("Abrir...");
+		mntmAbrir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comprobarCambios())
+					abrir();
+			}
+		});
 		mnArchivo.add(mntmAbrir);
-		
+
 		JMenuItem mntmGuardar = new JMenuItem("Guardar");
+		mntmGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guardar();
+			}
+		});
 		mnArchivo.add(mntmGuardar);
-		
+
 		JMenuItem mntmGuardarComo = new JMenuItem("Guardar como...");
+		mntmGuardarComo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guardarComo();
+			}
+		});
 		mnArchivo.add(mntmGuardarComo);
-		
+
 		JMenu mnClub = new JMenu("Club");
 		menuBar.add(mnClub);
-		
+
 		JMenu mnAadir = new JMenu("A\u00F1adir");
 		mnClub.add(mnAadir);
-		
+
 		JMenuItem mntmJugador_1 = new JMenuItem("Jugador");
 		mntmJugador_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				annadirJugador=new AnnadirJugador(club);
+				annadirJugador = new AnnadirJugador(club);
 				annadirJugador.setVisible(true);
 			}
 		});
 		mnAadir.add(mntmJugador_1);
-		
+
 		JMenuItem mntmEntrenador_1 = new JMenuItem("Entrenador");
+		mntmEntrenador_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				annadirEntrenador = new AnnadirEntrenador(club);
+				annadirEntrenador.setVisible(true);
+			}
+		});
 		mnAadir.add(mntmEntrenador_1);
-		
+
 		JMenuItem mntmMasajista_1 = new JMenuItem("Masajista");
+		mntmMasajista_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				annadirMasajista = new AnnadirMasajista(club);
+				annadirMasajista.setVisible(true);
+			}
+		});
 		mnAadir.add(mntmMasajista_1);
-		
+
 		JMenu mnMostrar = new JMenu("Mostrar");
 		mnClub.add(mnMostrar);
-		
+
 		JMenuItem mntmJugador = new JMenuItem("Jugador");
 		mntmJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(club.isEmpty()){
-					JOptionPane.showMessageDialog(null, "No hay jugadores en la lista.");
-				}else{
-				mostrarJugador=new MostrarJugador(club);
-				mostrarJugador.setVisible(true);
+				Club clubFiltered = club.getClubFiltradoTipo(Tipo.JUGADOR);
+				if (clubFiltered.isEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							"No hay jugadores en la lista.");
+				} else {
+					mostrarJugador = new MostrarJugador(club);
+					mostrarJugador.setVisible(true);
 				}
 			}
 		});
 		mnMostrar.add(mntmJugador);
-		
+
 		JMenuItem mntmEntrenador = new JMenuItem("Entrenador");
+		mntmEntrenador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Club clubFiltrado = club.getClubFiltradoTipo(Tipo.ENTRENADOR);
+				if (clubFiltrado.isEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							"No hay entrenadores en la lista.");
+				} else {
+					mostrarEntrenador = new MostrarEntrenador(club);
+					mostrarEntrenador.setVisible(true);
+				}
+			}
+		});
 		mnMostrar.add(mntmEntrenador);
-		
+
 		JMenuItem mntmMasajista = new JMenuItem("Masajista");
+		mntmMasajista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Club clubFiltered = club.getClubFiltradoTipo(Tipo.MASAJISTA);
+				if (clubFiltered.isEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							"No hay masajistas en la lista.");
+				} else {
+					mostrarMasajista = new MostrarMasajista(club);
+					mostrarMasajista.setVisible(true);
+				}
+			}
+		});
 		mnMostrar.add(mntmMasajista);
-		
+
 		JMenu mnBuscar = new JMenu("Buscar");
 		menuBar.add(mnBuscar);
-		
+
 		JMenuItem mntmPorCategora = new JMenuItem("Por categor\u00EDa");
 		mntmPorCategora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				buscarCategoria=new BuscarCategoria(club);
-				buscarCategoria.setVisible(true);
+				
+				if (club.isEmpty())
+					JOptionPane.showMessageDialog(null,
+							"No hay miembros en la lista.");
+				else {
+					buscarCategoria = new BuscarCategoria(club);
+					buscarCategoria.setVisible(true);
+				}
+
 			}
 		});
 		mnBuscar.add(mntmPorCategora);
-		
-		JMenuItem mntmPorAoDe = new JMenuItem("Por a\u00F1o de inscripci\u00F3n");
+
+		JMenuItem mntmPorAoDe = new JMenuItem(
+				"Por a\u00F1o de inscripci\u00F3n");
 		mntmPorAoDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				buscarAnno = new BuscarPorAnno(club);
-				buscarAnno.setVisible(true);
+				if (club.isEmpty())
+					JOptionPane.showMessageDialog(null,
+							"No hay miembros en la lista.");
+				else {
+					buscarAnno = new BuscarPorAnno(club);
+					buscarAnno.setVisible(true);
+				}
+
 			}
 		});
 		mnBuscar.add(mntmPorAoDe);
+	}
+	
+	private boolean comprobarCambios() {
+		int entero;
+		if (club.isModificado()) {
+			entero = JOptionPane
+					.showConfirmDialog(
+							frame,
+							"Los cambios guardados se perderán. Desea guardar los cambios?",
+							"Cambios", JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE);
+			switch (entero) {
+			case JOptionPane.YES_OPTION:
+				return guardar();
+
+			case JOptionPane.NO_OPTION:
+				return true;
+			case JOptionPane.CANCEL_OPTION:
+				return false;
+
+			}
+		}
+		return true;
+
+	}
+
+	protected void abrir() {
+		int entero = filechooser.showOpenDialog(frame);
+		if (entero == JFileChooser.APPROVE_OPTION)
+			try {
+				club = (Club) Fichero.abrir(filechooser.getSelectedFile());
+				fichero = filechooser.getSelectedFile();
+				frame.setTitle(fichero.getName() + " - C.D. Modas Levante");
+				club.setModificado(false);
+			} catch (ClassNotFoundException | IOException e) {
+				JOptionPane.showMessageDialog(frame,
+						"No se ha podido abrir el archivo", "Abrir",
+						JOptionPane.ERROR_MESSAGE);
+			}
+
+	}
+	
+	private boolean guardar() {
+		if (fichero != null)
+			return almacenar();
+		else
+			return guardarComo();
+	}
+	
+	private boolean almacenar() {
+		try {
+			fichero = filechooser.getSelectedFile();
+			Fichero.guardar(fichero, club);
+			fichero = Fichero.annadirExtension(fichero);
+			frame.setTitle(fichero.getName() + " - C.D. Modas Levante");
+			club.setModificado(false);
+			return true;
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "No se ha podido guardar",
+					"Error", JOptionPane.ERROR_MESSAGE);
+		}
+		return false;
+	}
+
+	private boolean guardarComo() {
+		int opcion = filechooser.showSaveDialog(frame);
+		if (opcion == JFileChooser.APPROVE_OPTION)
+			if (sobreescribir(filechooser.getSelectedFile()))
+				return almacenar();
+
+		return false;
+	}
+	
+	protected boolean sobreescribir(File file2) {
+		int entero;
+		if (file2.exists()) {
+			entero = JOptionPane.showConfirmDialog(frame, "¿Desea sobreescribir?",
+					"Guardar", JOptionPane.YES_NO_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE);
+			switch (entero) {
+			case JOptionPane.YES_OPTION:
+				return true;
+
+			default:
+				return false;
+			}
+		}
+		return true;
+
 	}
 
 }

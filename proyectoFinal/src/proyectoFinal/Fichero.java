@@ -38,7 +38,7 @@ public class Fichero implements Serializable {
     }
 
     public static File annadirExtension(File archivo) {
-            String extension = archivo.getPath();
+            String extension = archivo.getName();
             if (!extension.endsWith(".obj"))
                     return new File(archivo + ".obj");
             return archivo;
