@@ -2,12 +2,14 @@ package proyectoFinal;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Pattern;
 
 public class Miembro implements Serializable, Comparable<Miembro> {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Tipo tipo;
 	private String nombre;
 	static private final Pattern patronNombre = Pattern
@@ -27,14 +29,13 @@ public class Miembro implements Serializable, Comparable<Miembro> {
 	// private ArrayList<Selecciones> selecciones;
 
 	public Miembro(Tipo tipo, String nombre, String apellido1,
-			String apellido2, String añoNacimiento, Categoria categoria)
+			String apellido2, Categoria categoria)
 			throws NombreInvalidoException, ApellidoInvalidoException,
 			AñoNacimientoInvalidoException, ValorNegativoException {
 		super();
 		setNombre(nombre);
 		setApellido1(apellido1);
 		setApellido2(apellido2);
-		setAñoNacimiento(añoNacimiento);
 		setCategoria(categoria);
 		setFechaAlta();
 		setId();

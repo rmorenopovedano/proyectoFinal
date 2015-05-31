@@ -12,27 +12,18 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-
-import java.util.Date;
-import java.util.Calendar;
-
 import javax.swing.JList;
 
 import proyectoFinal.ApellidoInvalidoException;
 import proyectoFinal.AñoNacimientoInvalidoException;
-import proyectoFinal.Categoria;
 import proyectoFinal.Club;
 import proyectoFinal.DemarcacionJugador;
 import proyectoFinal.Jugador;
-import proyectoFinal.MiembroYaExisteException;
 import proyectoFinal.NombreInvalidoException;
 import proyectoFinal.ValorNegativoException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.beans.FeatureDescriptor;
-
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
@@ -43,6 +34,10 @@ import javax.swing.SpinnerNumberModel;
 
 public class AnnadirJugador extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField campoNombre;
 	private JTextField campoApellido1;
@@ -60,6 +55,8 @@ public class AnnadirJugador extends JDialog {
 	 */
 	@SuppressWarnings("unchecked")
 	public AnnadirJugador(Club club2) {
+		setResizable(false);
+		setModal(true);
 		club=club2;
 		setTitle("A\u00F1adir Jugador");
 		setBounds(100, 100, 750, 400);

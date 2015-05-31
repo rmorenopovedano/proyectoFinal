@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -14,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 import proyectoFinal.Club;
 import proyectoFinal.Entrenador;
 import proyectoFinal.Miembro;
-import proyectoFinal.MiembroYaExisteException;
 import proyectoFinal.Tipo;
 
 import javax.swing.JLabel;
@@ -24,12 +22,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
-import java.util.ArrayList;
-
-import javax.swing.JDesktopPane;
 
 public class MostrarEntrenador extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
 	private JComboBox comboBox;

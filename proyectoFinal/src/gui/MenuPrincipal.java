@@ -20,6 +20,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class MenuPrincipal {
 
@@ -33,6 +36,8 @@ public class MenuPrincipal {
 	private BuscarCategoria buscarCategoria;
 	private BuscarPorAnno buscarAnno;
 	private BuscarFechaAlta buscarFechaAlta;
+	private SobreElClub sobreElClub;
+	private Ayuda ayuda;
 	private Club club = new Club();
 	private File fichero;
 	private JFileChooser filechooser = new JFileChooser();
@@ -252,6 +257,34 @@ public class MenuPrincipal {
 			}
 		});
 		mnBuscar.add(mntmPorFechaDe);
+		
+		JMenu mnAyuda = new JMenu("Ayuda");
+		menuBar.add(mnAyuda);
+		
+		JMenuItem mntmVerLaAyuda = new JMenuItem("Ver la Ayuda");
+		mntmVerLaAyuda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ayuda=new Ayuda();
+				ayuda.setVisible(true);
+			}
+		});
+		mnAyuda.add(mntmVerLaAyuda);
+		
+		JMenuItem mntmAcercaDelClub = new JMenuItem("Acerca del Club");
+		mntmAcercaDelClub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				sobreElClub=new SobreElClub();
+				sobreElClub.setVisible(true);
+			}
+		});
+		mnAyuda.add(mntmAcercaDelClub);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/gui/imagenes/BENJMODAS12.jpg")));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 444, 250);
+		frame.getContentPane().add(lblNewLabel);
 	}
 
 	private boolean comprobarCambios() {

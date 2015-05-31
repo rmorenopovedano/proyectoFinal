@@ -27,6 +27,10 @@ import java.awt.event.ActionEvent;
 
 public class MostrarMasajista extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
 	private JComboBox comboBox;

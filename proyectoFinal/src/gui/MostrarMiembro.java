@@ -6,15 +6,13 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import proyectoFinal.Club;
 import proyectoFinal.Miembro;
-import proyectoFinal.NombreInvalidoException;
+import proyectoFinal.Tipo;
 
-import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
@@ -25,6 +23,10 @@ import java.awt.Font;
 
 public class MostrarMiembro extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
 	private JComboBox<String> comboBox;
@@ -40,6 +42,8 @@ public class MostrarMiembro extends JDialog {
 	private JLabel label;
 	private JButton btnOrdenar;
 	private Component frame;
+	private JLabel lblFNac;
+	private JLabel lblSueldo;
 
 	/**
 	 * Create the dialog.
@@ -63,6 +67,20 @@ public class MostrarMiembro extends JDialog {
 				String temp = (String) comboBox.getSelectedItem();
 				String[] partes = temp.split(".-");
 				Miembro juga = club.get(Integer.parseInt(partes[0]));
+				if(juga.getTipo().equals(Tipo.ENTRENADOR) || juga.getTipo().equals(Tipo.MASAJISTA)){
+					annoNacimiento.setVisible(false);
+					lblFNac.setVisible(false);
+					lblSueldo.setBounds(10, 71, 70, 14);
+					sueldoJugador.setBounds(90, 72, 200, 14);
+					label.setBounds(140, 72, 45, 14);
+				}
+				else{
+					annoNacimiento.setVisible(true);
+					lblFNac.setVisible(true);
+					lblSueldo.setBounds(273, 72, 66, 14);
+					sueldoJugador.setBounds(363, 72, 57, 14);
+					label.setBounds(421, 72, 45, 14);
+				}
 				nombreJugador.setText(juga.getNombre());
 				apellido1Jugador.setText(juga.getApellido1());
 				apellido2Jugador.setText(juga.getApellido2());
@@ -125,7 +143,7 @@ public class MostrarMiembro extends JDialog {
 		lblApellidos.setBounds(184, 22, 90, 14);
 		panelDetalle.add(lblApellidos);
 		
-		JLabel lblFNac = new JLabel("A\u00F1o Nacimiento:");
+		lblFNac = new JLabel("A\u00F1o Nacimiento:");
 		lblFNac.setForeground(new Color(0, 0, 255));
 		lblFNac.setFont(new Font("Arial", Font.BOLD, 13));
 		lblFNac.setBounds(10, 71, 125, 14);
@@ -137,7 +155,7 @@ public class MostrarMiembro extends JDialog {
 		lblCategora.setBounds(243, 123, 79, 14);
 		panelDetalle.add(lblCategora);
 		
-		JLabel lblSueldo = new JLabel("Sueldo:");
+		lblSueldo = new JLabel("Sueldo:");
 		lblSueldo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblSueldo.setForeground(new Color(0, 0, 255));
 		lblSueldo.setBounds(273, 72, 66, 14);

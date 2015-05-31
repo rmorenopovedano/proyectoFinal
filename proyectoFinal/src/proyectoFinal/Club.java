@@ -3,7 +3,6 @@ package proyectoFinal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 public class Club implements Serializable {
 	/**
@@ -111,11 +110,7 @@ public class Club implements Serializable {
 	}
 
 	public String[] getMiembrosParaLista() {
-		int tamano = 0;
-		for (Miembro miembro : plantilla) {
-			tamano++;
-		}
-		String[] arrMiembros = new String[tamano];
+		String[] arrMiembros = new String[plantilla.size()];
 		int conta = 0;
 		for (Miembro miembro : plantilla) {
 			arrMiembros[conta] = miembro.getId() + ".- " + miembro.getNombre().toUpperCase()

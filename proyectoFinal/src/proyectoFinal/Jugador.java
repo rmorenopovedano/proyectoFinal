@@ -1,8 +1,10 @@
 package proyectoFinal;
 
-import java.util.ArrayList;
-
 public class Jugador extends Miembro implements Sueldos{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int dorsal;
 	private DemarcacionJugador demarcacion;
 //	private ArrayList<Premios> premios;

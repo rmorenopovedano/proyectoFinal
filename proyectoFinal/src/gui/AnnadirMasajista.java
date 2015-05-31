@@ -23,7 +23,6 @@ import proyectoFinal.AñoNacimientoInvalidoException;
 import proyectoFinal.Categoria;
 import proyectoFinal.Club;
 import proyectoFinal.Masajista;
-import proyectoFinal.MiembroYaExisteException;
 import proyectoFinal.NombreInvalidoException;
 import proyectoFinal.TitulacionMasajista;
 import proyectoFinal.ValorNegativoException;
@@ -35,11 +34,14 @@ import javax.swing.SpinnerNumberModel;
 
 public class AnnadirMasajista extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField campoNombre;
 	private JTextField campoApellido1;
 	private JTextField campoApellido2;
-	private JTextField campoAnnoNac;
 	private JList listaTitulacion;
 	private JList listaCategoria;
 	private Club club;
@@ -50,6 +52,8 @@ public class AnnadirMasajista extends JDialog {
 	 * Create the dialog.
 	 */
 	public AnnadirMasajista(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("A\u00F1adir Masajista");
 		club = club2;
 		setBounds(100, 100, 750, 400);
@@ -98,36 +102,25 @@ public class AnnadirMasajista extends JDialog {
 				panel.add(campoApellido2);
 			}
 			{
-				JLabel label = new JLabel("A\u00F1o nacimiento");
-				label.setBounds(147, 113, 96, 14);
-				panel.add(label);
-			}
-			{
-				campoAnnoNac = new JTextField();
-				campoAnnoNac.setColumns(10);
-				campoAnnoNac.setBounds(259, 110, 86, 20);
-				panel.add(campoAnnoNac);
-			}
-			{
 				spinnerAnnosExp = new JSpinner();
 				spinnerAnnosExp.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				spinnerAnnosExp.setBounds(523, 110, 42, 20);
+				spinnerAnnosExp.setBounds(408, 111, 42, 20);
 				panel.add(spinnerAnnosExp);
 			}
 			{
 				JLabel label = new JLabel("A\u00F1os Experiencia");
-				label.setBounds(407, 113, 120, 14);
+				label.setBounds(292, 114, 120, 14);
 				panel.add(label);
 			}
 			{
-				JLabel lblTitulacion = new JLabel("Titulacion");
-				lblTitulacion.setBounds(172, 230, 51, 14);
+				JLabel lblTitulacion = new JLabel("Titulacion:");
+				lblTitulacion.setBounds(166, 230, 96, 14);
 				panel.add(lblTitulacion);
 			}
 			{
-				JLabel label = new JLabel("Categor\u00EDa");
-				label.setBounds(388, 230, 74, 14);
-				panel.add(label);
+				JLabel lblCategora = new JLabel("Categor\u00EDa:");
+				lblCategora.setBounds(388, 230, 74, 14);
+				panel.add(lblCategora);
 			}
 			{
 				JScrollPane scrollPane = new JScrollPane();
@@ -167,7 +160,7 @@ public class AnnadirMasajista extends JDialog {
 						try {
 							club.annadir(new Masajista(campoNombre.getText(),
 									campoApellido1.getText(), campoApellido2
-											.getText(), campoAnnoNac.getText(),
+											.getText(),
 									(Categoria) listaCategoria
 											.getSelectedValue(),
 									(TitulacionMasajista) listaTitulacion

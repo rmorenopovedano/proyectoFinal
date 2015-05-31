@@ -22,9 +22,7 @@ import proyectoFinal.ApellidoInvalidoException;
 import proyectoFinal.AñoNacimientoInvalidoException;
 import proyectoFinal.Categoria;
 import proyectoFinal.Club;
-import proyectoFinal.DemarcacionJugador;
 import proyectoFinal.Entrenador;
-import proyectoFinal.MiembroYaExisteException;
 import proyectoFinal.NivelEntrenador;
 import proyectoFinal.NombreInvalidoException;
 import proyectoFinal.ValorNegativoException;
@@ -36,11 +34,14 @@ import javax.swing.SpinnerNumberModel;
 
 public class AnnadirEntrenador extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField campoNombre;
 	private JTextField campoApellido1;
 	private JTextField campoApellido2;
-	private JTextField campoAnnoNacimiento;
 	private JList listaTitulacion;
 	private Club club;
 	private JSpinner spinnerAnnosExp;
@@ -51,6 +52,8 @@ public class AnnadirEntrenador extends JDialog {
 	 * Create the dialog.
 	 */
 	public AnnadirEntrenador(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("A\u00F1adir Entrenador");
 		club = club2;
 		setBounds(100, 100, 750, 400);
@@ -99,25 +102,14 @@ public class AnnadirEntrenador extends JDialog {
 				panel.add(campoApellido2);
 			}
 			{
-				JLabel label = new JLabel("A\u00F1o nacimiento");
-				label.setBounds(147, 113, 96, 14);
-				panel.add(label);
-			}
-			{
-				campoAnnoNacimiento = new JTextField();
-				campoAnnoNacimiento.setColumns(10);
-				campoAnnoNacimiento.setBounds(259, 110, 86, 20);
-				panel.add(campoAnnoNacimiento);
-			}
-			{
 				spinnerAnnosExp = new JSpinner();
 				spinnerAnnosExp.setModel(new SpinnerNumberModel(0, 0, 50, 1));
-				spinnerAnnosExp.setBounds(523, 110, 42, 20);
+				spinnerAnnosExp.setBounds(395, 111, 42, 20);
 				panel.add(spinnerAnnosExp);
 			}
 			{
 				JLabel lblAosExperiencia = new JLabel("A\u00F1os Experiencia");
-				lblAosExperiencia.setBounds(407, 113, 120, 14);
+				lblAosExperiencia.setBounds(279, 114, 120, 14);
 				panel.add(lblAosExperiencia);
 			}
 			{
@@ -167,7 +159,6 @@ public class AnnadirEntrenador extends JDialog {
 						try {
 							club.annadir(new Entrenador(campoNombre.getText(),
 									campoApellido1.getText(), campoApellido2
-											.getText(), campoAnnoNacimiento
 											.getText(),
 									(Categoria) listaCategorias
 											.getSelectedValue(),

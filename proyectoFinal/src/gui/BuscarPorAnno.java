@@ -15,13 +15,15 @@ import javax.swing.JComboBox;
 
 import proyectoFinal.Club;
 import proyectoFinal.Miembro;
-import proyectoFinal.MiembroYaExisteException;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class BuscarPorAnno extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
 	private MostrarMiembro mostrarMiembro;

@@ -14,14 +14,16 @@ import javax.swing.JComboBox;
 import proyectoFinal.Categoria;
 import proyectoFinal.Club;
 import proyectoFinal.Miembro;
-import proyectoFinal.MiembroYaExisteException;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class BuscarCategoria extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
 	private JComboBox comboBox;

@@ -2,15 +2,18 @@ package proyectoFinal;
 
 public class Entrenador extends Miembro implements Sueldos {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private NivelEntrenador nivel;
 	private int annosExp;
 
-	public Entrenador(String nombre, String apellido1, String apellido2,
-			String añoNacimiento, Categoria categoria,
+	public Entrenador(String nombre, String apellido1, String apellido2, Categoria categoria,
 			NivelEntrenador nivel, int annosExp)
 			throws NombreInvalidoException, ApellidoInvalidoException,
 			AñoNacimientoInvalidoException, ValorNegativoException {
-		super(Tipo.ENTRENADOR, nombre, apellido1, apellido2, añoNacimiento, categoria);
+		super(Tipo.ENTRENADOR, nombre, apellido1, apellido2, categoria);
 		setNivel(nivel);
 		setAnnosExp(annosExp);
 		super.setSueldo(calcularSueldo(Miembro.getSueldoBase()));
