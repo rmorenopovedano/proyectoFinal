@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.AbstractButton;
@@ -25,6 +26,8 @@ import java.awt.Font;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import javax.swing.JDesktopPane;
+
 public class MostrarEntrenador extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -38,13 +41,18 @@ public class MostrarEntrenador extends JDialog {
 	private JLabel campoApellido2;
 	private JLabel campoApellido1;
 	private JLabel nombreJugador;
+	private JLabel campoFechaAlta;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
 	 */
 	public MostrarEntrenador(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("Mostrar Entrenador");
 		setBounds(100, 100, 500, 370);
+		setLocationRelativeTo(frame);
 		club = club2;
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,10 +80,11 @@ public class MostrarEntrenador extends JDialog {
 				campoNivel.setText(String.valueOf(((Entrenador) entrenador)
 						.getNivel()));
 				campoSueldo.setText(String.valueOf(entrenador.getSueldo()));
+				campoFechaAlta.setText(entrenador.getFechaAlta());
 
 			}
 		});
-		comboBox.setBounds(178, 19, 142, 20);
+		comboBox.setBounds(178, 19, 214, 20);
 		contentPanel.add(comboBox);
 
 		JPanel panelDetalle = new JPanel();
@@ -132,42 +141,42 @@ public class MostrarEntrenador extends JDialog {
 			panelDetalle.add(lblNivel);
 		}
 		{
-			nombreJugador = new JLabel("New label");
+			nombreJugador = new JLabel("");
 			nombreJugador.setBounds(74, 38, 73, 14);
 			panelDetalle.add(nombreJugador);
 		}
 		{
-			campoApellido1 = new JLabel("New label");
+			campoApellido1 = new JLabel("");
 			campoApellido1.setBounds(297, 38, 71, 14);
 			panelDetalle.add(campoApellido1);
 		}
 		{
-			campoApellido2 = new JLabel("New label");
+			campoApellido2 = new JLabel("");
 			campoApellido2.setBounds(378, 38, 78, 14);
 			panelDetalle.add(campoApellido2);
 		}
 		{
-			campoAnnoNac = new JLabel("New label");
+			campoAnnoNac = new JLabel("");
 			campoAnnoNac.setBounds(125, 85, 46, 14);
 			panelDetalle.add(campoAnnoNac);
 		}
 		{
-			campoSueldo = new JLabel("New label");
+			campoSueldo = new JLabel("");
 			campoSueldo.setBounds(297, 85, 46, 14);
 			panelDetalle.add(campoSueldo);
 		}
 		{
-			campoCategoria = new JLabel("New label");
+			campoCategoria = new JLabel("");
 			campoCategoria.setBounds(89, 141, 82, 14);
 			panelDetalle.add(campoCategoria);
 		}
 		{
-			campoAnnosExp = new JLabel("New label");
+			campoAnnosExp = new JLabel("");
 			campoAnnosExp.setBounds(355, 141, 46, 14);
 			panelDetalle.add(campoAnnosExp);
 		}
 		{
-			campoNivel = new JLabel("New label");
+			campoNivel = new JLabel("");
 			campoNivel.setBounds(57, 190, 90, 14);
 			panelDetalle.add(campoNivel);
 		}
@@ -177,6 +186,18 @@ public class MostrarEntrenador extends JDialog {
 			label.setFont(new Font("Arial", Font.BOLD, 13));
 			label.setBounds(378, 85, 66, 14);
 			panelDetalle.add(label);
+		}
+		{
+			JLabel lblFechaAlta = new JLabel("Fecha Alta:");
+			lblFechaAlta.setForeground(Color.BLUE);
+			lblFechaAlta.setFont(new Font("Arial", Font.BOLD, 13));
+			lblFechaAlta.setBounds(224, 190, 90, 15);
+			panelDetalle.add(lblFechaAlta);
+		}
+		{
+			campoFechaAlta = new JLabel("");
+			campoFechaAlta.setBounds(308, 190, 82, 14);
+			panelDetalle.add(campoFechaAlta);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -197,8 +218,8 @@ public class MostrarEntrenador extends JDialog {
 							JOptionPane.showMessageDialog(null,
 									"Entrenador eliminado con éxito");
 							club.setModificado(true);
-							Club clubFiltered = club.getClubFiltradoTipo(Tipo.ENTRENADOR);
-							if (clubFiltered.size() > 0) {
+							Club clubFiltrado = club.getClubFiltradoTipo(Tipo.ENTRENADOR);
+							if (clubFiltrado.size() > 0) {
 								comboBox.removeItemAt(comboBox
 										.getSelectedIndex());
 								comboBox.revalidate();
@@ -228,6 +249,4 @@ public class MostrarEntrenador extends JDialog {
 			}
 		}
 	}
-	
-		
 }

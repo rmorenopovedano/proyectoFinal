@@ -1,8 +1,10 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -23,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
+import java.util.List;
 
 public class MostrarJugador extends JDialog {
 
@@ -51,19 +54,24 @@ public class MostrarJugador extends JDialog {
 	private JLabel lblDorsal;
 	private JLabel campoDorsal;
 	private JLabel label_5;
+	private JLabel campoFechaAlta;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
 	 */
 	public MostrarJugador(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("Mostrar Jugador");
 		club = club2;
 		setBounds(100, 100, 500, 370);
+		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-
+		
 		comboBox = new JComboBox(club.getJugadoresParaLista());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -84,6 +92,7 @@ public class MostrarJugador extends JDialog {
 				campoPJ.setText(String.valueOf(((Jugador) juga)
 						.getPartidosJugados()));
 				campoDorsal.setText(String.valueOf(((Jugador) juga).getDorsal()));
+				campoFechaAlta.setText(juga.getFechaAlta());
 			}
 		});
 		comboBox.setBounds(166, 11, 230, 31);
@@ -201,6 +210,16 @@ public class MostrarJugador extends JDialog {
 		label_5.setFont(new Font("Arial", Font.BOLD, 13));
 		label_5.setBounds(390, 61, 66, 14);
 		panelDetalle.add(label_5);
+		
+		JLabel lblFechaAlta = new JLabel("Fecha Alta:");
+		lblFechaAlta.setForeground(Color.BLUE);
+		lblFechaAlta.setFont(new Font("Arial", Font.BOLD, 13));
+		lblFechaAlta.setBounds(10, 209, 79, 14);
+		panelDetalle.add(lblFechaAlta);
+		
+		campoFechaAlta = new JLabel("");
+		campoFechaAlta.setBounds(89, 210, 84, 14);
+		panelDetalle.add(campoFechaAlta);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -221,8 +240,8 @@ public class MostrarJugador extends JDialog {
 							club.setModificado(true);
 							// Comprobamos que sigan quedando jugadores en el club. Si no quedan más
 							// mostramos un mensaje y cerramos la ventana.
-							Club clubFiltered = club.getClubFiltradoTipo(Tipo.JUGADOR);
-							if (clubFiltered.size() > 0) {
+							Club clubFiltrado = club.getClubFiltradoTipo(Tipo.JUGADOR);
+							if (clubFiltrado.size() > 0) {
 								comboBox.removeItemAt(comboBox
 										.getSelectedIndex());
 								comboBox.revalidate();

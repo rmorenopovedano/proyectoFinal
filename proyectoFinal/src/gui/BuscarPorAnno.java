@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,13 +26,17 @@ public class BuscarPorAnno extends JDialog {
 	private Club club;
 	private MostrarMiembro mostrarMiembro;
 	private JComboBox comboBox;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
 	 */
 	public BuscarPorAnno(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("Buscar por A\u00F1o de Inscripci\u00F3n");
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(frame);
 		club = club2;
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

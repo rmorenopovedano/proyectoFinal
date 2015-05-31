@@ -3,6 +3,7 @@ package proyectoFinal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class Club implements Serializable {
 	/**
@@ -34,15 +35,23 @@ public class Club implements Serializable {
 		}
 		return arrMiembrosCategoria;
 	}
-
-	public ArrayList<Miembro> getJugadores() {
-		ArrayList<Miembro> arrJugadores = new ArrayList<Miembro>();
+	public ArrayList<Miembro> getMiembrosFechaAlta(String fecha) {
+		ArrayList<Miembro> arrMiembrosFechaAlta = new ArrayList<Miembro>();
 		for (Miembro miembro : plantilla) {
-			if (miembro.getTipo() == Tipo.JUGADOR)
-				arrJugadores.add(miembro);
+			if (miembro.getFechaAlta().equals(fecha))
+				arrMiembrosFechaAlta.add(miembro);
 		}
-		return arrJugadores;
+		return arrMiembrosFechaAlta;
 	}
+
+//	public ArrayList<Miembro> getJugadores() {
+//		ArrayList<Miembro> arrJugadores = new ArrayList<Miembro>();
+//		for (Miembro miembro : plantilla) {
+//			if (miembro.getTipo() == Tipo.JUGADOR)
+//				arrJugadores.add(miembro);
+//		}
+//		return arrJugadores;
+//	}
 
 	public String[] getJugadoresParaLista() {
 		int tamano = 0;
@@ -55,12 +64,14 @@ public class Club implements Serializable {
 		for (Miembro miembro : plantilla) {
 			if (miembro instanceof Jugador) {
 				arrJugadores[conta] = miembro.getId() + ".- "
-						+ miembro.getNombre() + " " + miembro.getApellido1()+ " "+miembro.getApellido2();
+						+ miembro.getNombre().toUpperCase() + " " + miembro.getApellido1().toUpperCase()
+						+ " " + miembro.getApellido2().toUpperCase();
 				conta++;
 			}
 		}
 		return arrJugadores;
 	}
+
 	public String[] getEntrenadoresParaLista() {
 		int tamano = 0;
 		for (Miembro miembro : plantilla) {
@@ -72,12 +83,14 @@ public class Club implements Serializable {
 		for (Miembro miembro : plantilla) {
 			if (miembro instanceof Entrenador) {
 				arrEntrenadores[conta] = miembro.getId() + ".- "
-						+ miembro.getNombre() + " " + miembro.getApellido1()+ " "+miembro.getApellido2();
+						+ miembro.getNombre().toUpperCase() + " " + miembro.getApellido1().toUpperCase()
+						+ " " + miembro.getApellido2().toUpperCase();
 				conta++;
 			}
 		}
 		return arrEntrenadores;
 	}
+
 	public String[] getMasajistasParaLista() {
 		int tamano = 0;
 		for (Miembro miembro : plantilla) {
@@ -89,7 +102,8 @@ public class Club implements Serializable {
 		for (Miembro miembro : plantilla) {
 			if (miembro instanceof Masajista) {
 				arrMasajistas[conta] = miembro.getId() + ".- "
-						+ miembro.getNombre() + " " + miembro.getApellido1()+ " "+miembro.getApellido2();
+						+ miembro.getNombre().toUpperCase() + " " + miembro.getApellido1().toUpperCase()
+						+ " " + miembro.getApellido2().toUpperCase();
 				conta++;
 			}
 		}
@@ -104,30 +118,23 @@ public class Club implements Serializable {
 		String[] arrMiembros = new String[tamano];
 		int conta = 0;
 		for (Miembro miembro : plantilla) {
-			arrMiembros[conta] = miembro.getId() + ".- " + miembro.getNombre()
-					+ " " + miembro.getApellido1()+" "+miembro.getApellido2();
+			arrMiembros[conta] = miembro.getId() + ".- " + miembro.getNombre().toUpperCase()
+					+ " " + miembro.getApellido1().toUpperCase() + " "
+					+ miembro.getApellido2().toUpperCase();
 			conta++;
 
 		}
 		return arrMiembros;
 	}
+
 	public ArrayList<Miembro> getMiembrosPorAnno(String fechaAlta) {
 		ArrayList<Miembro> arrMiembrosPorAnno = new ArrayList<Miembro>();
 		for (Miembro miembro : plantilla) {
-			System.out.println(miembro.getAnnoAlta()+" "+fechaAlta);
-			if (Integer.parseInt(miembro.getAnnoAlta()) == Integer.parseInt(fechaAlta))
+			if (Integer.parseInt(miembro.getAnnoAlta()) == Integer
+					.parseInt(fechaAlta))
 				arrMiembrosPorAnno.add(miembro);
 		}
 		return arrMiembrosPorAnno;
-	}
-	
-	public ArrayList<Miembro> getMiembrosPorTipo(Tipo tipo) {
-		ArrayList<Miembro> array = new ArrayList<Miembro>();
-		for (Miembro miembro : plantilla) {
-			if (miembro.getTipo().equals(tipo))
-				array.add(miembro);
-		}
-		return array;
 	}
 
 	public boolean isModificado() {
@@ -166,13 +173,22 @@ public class Club implements Serializable {
 		Collections.sort(plantilla);
 	}
 
+	public ArrayList<Miembro> getMiembrosPorTipo(Tipo tipo) {
+		ArrayList<Miembro> array = new ArrayList<Miembro>();
+		for (Miembro miembro : plantilla) {
+			if (miembro.getTipo().equals(tipo))
+				array.add(miembro);
+		}
+		return array;
+	}
+
 	public Club getClubFiltradoTipo(Tipo tipo) {
 		ArrayList<Miembro> arraylist = getMiembrosPorTipo(tipo);
-		Club clubEntrenadores = new Club();
+		Club clubPorTipo = new Club();
 		for (Miembro miembro : arraylist) {
-				clubEntrenadores.annadir(miembro);
+			clubPorTipo.annadir(miembro);
 		}
 
-		return clubEntrenadores;
+		return clubPorTipo;
 	}
 }

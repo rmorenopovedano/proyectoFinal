@@ -32,6 +32,7 @@ public class MenuPrincipal {
 	private MostrarMasajista mostrarMasajista;
 	private BuscarCategoria buscarCategoria;
 	private BuscarPorAnno buscarAnno;
+	private BuscarFechaAlta buscarFechaAlta;
 	private Club club = new Club();
 	private File fichero;
 	private JFileChooser filechooser = new JFileChooser();
@@ -63,11 +64,13 @@ public class MenuPrincipal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		filechooser.setFileFilter(new FileNameExtensionFilter("Archivos Tipo .obj",
-				"obj"));
+		filechooser.setFileFilter(new FileNameExtensionFilter(
+				"Archivos Tipo .obj", "obj"));
 		frame = new JFrame();
-		frame.setTitle("Menu Principal");
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 300);
+		frame.setLocationRelativeTo(null);
+		frame.setTitle("Menu Principal");
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -86,7 +89,7 @@ public class MenuPrincipal {
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
 		mntmNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(comprobarCambios()){
+				if (comprobarCambios()) {
 					fichero = null;
 					frame.setTitle("Sin Titulo - C.D. Modas Levante");
 					club = new Club();
@@ -98,7 +101,7 @@ public class MenuPrincipal {
 		JMenuItem mntmAbrir = new JMenuItem("Abrir...");
 		mntmAbrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(comprobarCambios())
+				if (comprobarCambios())
 					abrir();
 			}
 		});
@@ -207,7 +210,7 @@ public class MenuPrincipal {
 		JMenuItem mntmPorCategora = new JMenuItem("Por categor\u00EDa");
 		mntmPorCategora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				if (club.isEmpty())
 					JOptionPane.showMessageDialog(null,
 							"No hay miembros en la lista.");
@@ -235,8 +238,22 @@ public class MenuPrincipal {
 			}
 		});
 		mnBuscar.add(mntmPorAoDe);
+		
+		JMenuItem mntmPorFechaDe = new JMenuItem("Por fecha de alta");
+		mntmPorFechaDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (club.isEmpty())
+					JOptionPane.showMessageDialog(null,
+							"No hay miembros en la lista.");
+				else {
+				buscarFechaAlta=new BuscarFechaAlta(club);
+				buscarFechaAlta.setVisible(true);
+				}
+			}
+		});
+		mnBuscar.add(mntmPorFechaDe);
 	}
-	
+
 	private boolean comprobarCambios() {
 		int entero;
 		if (club.isModificado()) {
@@ -276,14 +293,14 @@ public class MenuPrincipal {
 			}
 
 	}
-	
+
 	private boolean guardar() {
 		if (fichero != null)
 			return almacenar();
 		else
 			return guardarComo();
 	}
-	
+
 	private boolean almacenar() {
 		try {
 			fichero = filechooser.getSelectedFile();
@@ -307,12 +324,13 @@ public class MenuPrincipal {
 
 		return false;
 	}
-	
+
 	protected boolean sobreescribir(File file2) {
 		int entero;
 		if (file2.exists()) {
-			entero = JOptionPane.showConfirmDialog(frame, "¿Desea sobreescribir?",
-					"Guardar", JOptionPane.YES_NO_CANCEL_OPTION,
+			entero = JOptionPane.showConfirmDialog(frame,
+					"¿Desea sobreescribir?", "Guardar",
+					JOptionPane.YES_NO_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE);
 			switch (entero) {
 			case JOptionPane.YES_OPTION:

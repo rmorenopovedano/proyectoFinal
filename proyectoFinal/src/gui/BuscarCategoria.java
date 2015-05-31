@@ -1,10 +1,12 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
@@ -24,14 +26,18 @@ public class BuscarCategoria extends JDialog {
 	private Club club;
 	private JComboBox comboBox;
 	private MostrarMiembro mostrarMiembro;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
 	 */
 	public BuscarCategoria(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("Buscar por Categor\u00EDa");
 		club = club2;
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -50,8 +56,13 @@ public class BuscarCategoria extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Club clubCategoria = getPorCategoria((Categoria) comboBox
 								.getSelectedItem());
-						mostrarMiembro = new MostrarMiembro(clubCategoria);
-						mostrarMiembro.setVisible(true);
+						if(clubCategoria.isEmpty())
+							JOptionPane.showMessageDialog(frame, "No hay miembros en esta categoría");
+						else{
+							mostrarMiembro = new MostrarMiembro(clubCategoria);
+							mostrarMiembro.setVisible(true);
+						}
+						
 					}
 				});
 				okButton.setActionCommand("OK");

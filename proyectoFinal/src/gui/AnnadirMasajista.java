@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -30,6 +31,8 @@ import proyectoFinal.ValorNegativoException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.SpinnerNumberModel;
+
 public class AnnadirMasajista extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -41,6 +44,7 @@ public class AnnadirMasajista extends JDialog {
 	private JList listaCategoria;
 	private Club club;
 	private JSpinner spinnerAnnosExp;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
@@ -49,6 +53,7 @@ public class AnnadirMasajista extends JDialog {
 		setTitle("A\u00F1adir Masajista");
 		club = club2;
 		setBounds(100, 100, 750, 400);
+		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -105,6 +110,7 @@ public class AnnadirMasajista extends JDialog {
 			}
 			{
 				spinnerAnnosExp = new JSpinner();
+				spinnerAnnosExp.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 				spinnerAnnosExp.setBounds(523, 110, 42, 20);
 				panel.add(spinnerAnnosExp);
 			}

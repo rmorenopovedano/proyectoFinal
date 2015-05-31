@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -38,13 +39,18 @@ public class MostrarMasajista extends JDialog {
 	private JLabel campoCategoria;
 	private JLabel lblTitulacion;
 	private JLabel campoTitulacion;
+	private JLabel campoFechaAlta;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
 	 */
 	public MostrarMasajista(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("Mostrar Masajista");
 		setBounds(100, 100, 500, 370);
+		setLocationRelativeTo(frame);
 		club=club2;
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,12 +76,12 @@ public class MostrarMasajista extends JDialog {
 				panel.add(label);
 			}
 			{
-				campoCategoria = new JLabel("New label");
+				campoCategoria = new JLabel("");
 				campoCategoria.setBounds(89, 137, 82, 14);
 				panel.add(campoCategoria);
 			}
 			{
-				campoTitulacion = new JLabel("New label");
+				campoTitulacion = new JLabel("");
 				campoTitulacion.setBounds(89, 186, 90, 14);
 				panel.add(campoTitulacion);
 			}
@@ -87,7 +93,7 @@ public class MostrarMasajista extends JDialog {
 				panel.add(label);
 			}
 			{
-				campoAnnosExp = new JLabel("New label");
+				campoAnnosExp = new JLabel("");
 				campoAnnosExp.setBounds(355, 137, 46, 14);
 				panel.add(campoAnnosExp);
 			}
@@ -99,7 +105,7 @@ public class MostrarMasajista extends JDialog {
 				panel.add(label);
 			}
 			{
-				campoSueldo = new JLabel("New label");
+				campoSueldo = new JLabel("");
 				campoSueldo.setBounds(297, 81, 46, 14);
 				panel.add(campoSueldo);
 			}
@@ -111,7 +117,7 @@ public class MostrarMasajista extends JDialog {
 				panel.add(label);
 			}
 			{
-				campoAnnoNac = new JLabel("New label");
+				campoAnnoNac = new JLabel("");
 				campoAnnoNac.setBounds(125, 81, 46, 14);
 				panel.add(campoAnnoNac);
 			}
@@ -130,7 +136,7 @@ public class MostrarMasajista extends JDialog {
 				panel.add(label);
 			}
 			{
-				campoNombre = new JLabel("New label");
+				campoNombre = new JLabel("");
 				campoNombre.setBounds(74, 34, 73, 14);
 				panel.add(campoNombre);
 			}
@@ -142,14 +148,26 @@ public class MostrarMasajista extends JDialog {
 				panel.add(label);
 			}
 			{
-				campoApellido1 = new JLabel("New label");
+				campoApellido1 = new JLabel("");
 				campoApellido1.setBounds(297, 34, 71, 14);
 				panel.add(campoApellido1);
 			}
 			{
-				campoApellido2 = new JLabel("New label");
+				campoApellido2 = new JLabel("");
 				campoApellido2.setBounds(378, 34, 78, 14);
 				panel.add(campoApellido2);
+			}
+			{
+				JLabel lblFechaAlta = new JLabel("Fecha Alta:");
+				lblFechaAlta.setForeground(Color.BLUE);
+				lblFechaAlta.setFont(new Font("Arial", Font.BOLD, 13));
+				lblFechaAlta.setBounds(224, 186, 105, 15);
+				panel.add(lblFechaAlta);
+			}
+			{
+				campoFechaAlta = new JLabel("");
+				campoFechaAlta.setBounds(322, 186, 90, 14);
+				panel.add(campoFechaAlta);
 			}
 		}
 		{
@@ -173,10 +191,11 @@ public class MostrarMasajista extends JDialog {
 					campoCategoria.setText(String.valueOf(masajista.getCategoria()));
 					campoSueldo.setText(String.valueOf(masajista.getSueldo()));
 					campoTitulacion.setText(String.valueOf(((Masajista) masajista).getTitulacion()));
+					campoFechaAlta.setText(masajista.getFechaAlta());
 					
 				}
 			});
-			comboBox.setBounds(184, 15, 134, 26);
+			comboBox.setBounds(184, 15, 228, 26);
 			contentPanel.add(comboBox);
 		}
 		{
@@ -198,8 +217,8 @@ public class MostrarMasajista extends JDialog {
 							JOptionPane.showMessageDialog(null,
 									"Masajista eliminado con éxito");
 							club.setModificado(true);
-							Club clubFiltered = club.getClubFiltradoTipo(Tipo.MASAJISTA);
-							if (clubFiltered.size() > 0) {
+							Club clubFiltrado = club.getClubFiltradoTipo(Tipo.MASAJISTA);
+							if (clubFiltrado.size() > 0) {
 								comboBox.removeItemAt(comboBox
 										.getSelectedIndex());
 								comboBox.revalidate();

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -38,14 +39,18 @@ public class MostrarMiembro extends JDialog {
 	private JLabel lblTipo;
 	private JLabel label;
 	private JButton btnOrdenar;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
 	 */
 	public MostrarMiembro(Club club2) {
+		setResizable(false);
+		setModal(true);
 		setTitle("Mostrar Miembro");
 		club = club2;
 		setBounds(100, 100, 500, 300);
+		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -165,7 +170,6 @@ public class MostrarMiembro extends JDialog {
 				btnOrdenar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						club.ordenar();
-						System.out.println(club.toString());
 						comboBox.removeAllItems();
 						for(String s:club.getMiembrosParaLista()){
 							comboBox.addItem(s);

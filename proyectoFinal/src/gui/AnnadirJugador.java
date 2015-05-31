@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -52,6 +53,7 @@ public class AnnadirJugador extends JDialog {
 	private JSpinner spinnerPartidosJugados;
 	private JSpinner spinnerGoles;
 	private Club club;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
@@ -61,6 +63,7 @@ public class AnnadirJugador extends JDialog {
 		club=club2;
 		setTitle("A\u00F1adir Jugador");
 		setBounds(100, 100, 750, 400);
+		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -108,7 +111,7 @@ public class AnnadirJugador extends JDialog {
 		contentPanel.add(campoAnno);
 		{
 			spinnerDorsal = new JSpinner();
-			spinnerDorsal.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+			spinnerDorsal.setModel(new SpinnerNumberModel(1, 1, 99, 1));
 			spinnerDorsal.setBounds(628, 197, 42, 20);
 			contentPanel.add(spinnerDorsal);
 		}

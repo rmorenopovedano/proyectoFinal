@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -44,6 +45,7 @@ public class AnnadirEntrenador extends JDialog {
 	private Club club;
 	private JSpinner spinnerAnnosExp;
 	private JList listaCategorias;
+	private Component frame;
 
 	/**
 	 * Create the dialog.
@@ -52,6 +54,7 @@ public class AnnadirEntrenador extends JDialog {
 		setTitle("A\u00F1adir Entrenador");
 		club = club2;
 		setBounds(100, 100, 750, 400);
+		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
