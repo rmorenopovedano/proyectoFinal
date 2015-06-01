@@ -31,12 +31,11 @@ public class MostrarEntrenador extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private JLabel campoNivel;
 	private JLabel campoAnnosExp;
 	private JLabel campoCategoria;
 	private JLabel campoSueldo;
-	private JLabel campoAnnoNac;
 	private JLabel campoApellido2;
 	private JLabel campoApellido1;
 	private JLabel nombreJugador;
@@ -63,7 +62,7 @@ public class MostrarEntrenador extends JDialog {
 			contentPanel.add(lblElegirEntrenador);
 		}
 
-		comboBox = new JComboBox(club.getEntrenadoresParaLista());
+		comboBox = new JComboBox<String>(club.getEntrenadoresParaLista());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String temp = (String) comboBox.getSelectedItem();
@@ -72,7 +71,6 @@ public class MostrarEntrenador extends JDialog {
 				nombreJugador.setText(entrenador.getNombre());
 				campoApellido1.setText(entrenador.getApellido1());
 				campoApellido2.setText(entrenador.getApellido2());
-				campoAnnoNac.setText(entrenador.getAñoNacimiento());
 				campoAnnosExp.setText(String.valueOf(((Entrenador) entrenador)
 						.getAnnosExp()));
 				campoCategoria.setText(String.valueOf(entrenador.getCategoria()));
@@ -105,15 +103,8 @@ public class MostrarEntrenador extends JDialog {
 			panelDetalle.add(label);
 		}
 		{
-			JLabel label = new JLabel("A\u00F1o Nacimiento:");
-			label.setBounds(10, 84, 105, 15);
-			label.setForeground(Color.BLUE);
-			label.setFont(new Font("Arial", Font.BOLD, 13));
-			panelDetalle.add(label);
-		}
-		{
 			JLabel label = new JLabel("Sueldo:");
-			label.setBounds(224, 84, 49, 15);
+			label.setBounds(10, 87, 49, 15);
 			label.setForeground(Color.BLUE);
 			label.setFont(new Font("Arial", Font.BOLD, 13));
 			panelDetalle.add(label);
@@ -155,13 +146,8 @@ public class MostrarEntrenador extends JDialog {
 			panelDetalle.add(campoApellido2);
 		}
 		{
-			campoAnnoNac = new JLabel("");
-			campoAnnoNac.setBounds(125, 85, 46, 14);
-			panelDetalle.add(campoAnnoNac);
-		}
-		{
 			campoSueldo = new JLabel("");
-			campoSueldo.setBounds(297, 85, 46, 14);
+			campoSueldo.setBounds(83, 88, 46, 14);
 			panelDetalle.add(campoSueldo);
 		}
 		{
@@ -183,7 +169,7 @@ public class MostrarEntrenador extends JDialog {
 			JLabel label = new JLabel("\u20AC");
 			label.setForeground(Color.BLUE);
 			label.setFont(new Font("Arial", Font.BOLD, 13));
-			label.setBounds(378, 85, 66, 14);
+			label.setBounds(164, 88, 66, 14);
 			panelDetalle.add(label);
 		}
 		{

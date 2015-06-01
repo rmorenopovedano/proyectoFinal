@@ -23,6 +23,10 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
+import javax.swing.JSeparator;
 
 public class MenuPrincipal {
 
@@ -92,6 +96,7 @@ public class MenuPrincipal {
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
+		mntmNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		mntmNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (comprobarCambios()) {
@@ -104,6 +109,7 @@ public class MenuPrincipal {
 		mnArchivo.add(mntmNuevo);
 
 		JMenuItem mntmAbrir = new JMenuItem("Abrir...");
+		mntmAbrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
 		mntmAbrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (comprobarCambios())
@@ -113,6 +119,7 @@ public class MenuPrincipal {
 		mnArchivo.add(mntmAbrir);
 
 		JMenuItem mntmGuardar = new JMenuItem("Guardar");
+		mntmGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
 		mntmGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardar();
@@ -127,6 +134,19 @@ public class MenuPrincipal {
 			}
 		});
 		mnArchivo.add(mntmGuardarComo);
+		
+		JSeparator separator = new JSeparator();
+		mnArchivo.add(separator);
+		
+		JMenuItem mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (comprobarCambios())
+					System.exit(0);
+			}
+		});
+		mntmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+		mnArchivo.add(mntmSalir);
 
 		JMenu mnClub = new JMenu("Club");
 		menuBar.add(mnClub);
@@ -135,6 +155,7 @@ public class MenuPrincipal {
 		mnClub.add(mnAadir);
 
 		JMenuItem mntmJugador_1 = new JMenuItem("Jugador");
+		mntmJugador_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.ALT_MASK));
 		mntmJugador_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				annadirJugador = new AnnadirJugador(club);
@@ -144,6 +165,7 @@ public class MenuPrincipal {
 		mnAadir.add(mntmJugador_1);
 
 		JMenuItem mntmEntrenador_1 = new JMenuItem("Entrenador");
+		mntmEntrenador_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_MASK));
 		mntmEntrenador_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				annadirEntrenador = new AnnadirEntrenador(club);
@@ -153,6 +175,7 @@ public class MenuPrincipal {
 		mnAadir.add(mntmEntrenador_1);
 
 		JMenuItem mntmMasajista_1 = new JMenuItem("Masajista");
+		mntmMasajista_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_MASK));
 		mntmMasajista_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				annadirMasajista = new AnnadirMasajista(club);
@@ -165,6 +188,7 @@ public class MenuPrincipal {
 		mnClub.add(mnMostrar);
 
 		JMenuItem mntmJugador = new JMenuItem("Jugador");
+		mntmJugador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.SHIFT_MASK));
 		mntmJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Club clubFiltered = club.getClubFiltradoTipo(Tipo.JUGADOR);
@@ -180,6 +204,7 @@ public class MenuPrincipal {
 		mnMostrar.add(mntmJugador);
 
 		JMenuItem mntmEntrenador = new JMenuItem("Entrenador");
+		mntmEntrenador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.SHIFT_MASK));
 		mntmEntrenador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Club clubFiltrado = club.getClubFiltradoTipo(Tipo.ENTRENADOR);
@@ -195,6 +220,7 @@ public class MenuPrincipal {
 		mnMostrar.add(mntmEntrenador);
 
 		JMenuItem mntmMasajista = new JMenuItem("Masajista");
+		mntmMasajista.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.SHIFT_MASK));
 		mntmMasajista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Club clubFiltered = club.getClubFiltradoTipo(Tipo.MASAJISTA);

@@ -31,7 +31,7 @@ public class MostrarJugador extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private JPanel panelDetalle;
 	private JLabel nombreJugador;
 	private JLabel apellido1Jugador;
@@ -72,7 +72,7 @@ public class MostrarJugador extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		comboBox = new JComboBox(club.getJugadoresParaLista());
+		comboBox = new JComboBox<String>(club.getJugadoresParaLista());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String temp = (String) comboBox.getSelectedItem();

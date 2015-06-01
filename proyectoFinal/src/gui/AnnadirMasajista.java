@@ -42,8 +42,8 @@ public class AnnadirMasajista extends JDialog {
 	private JTextField campoNombre;
 	private JTextField campoApellido1;
 	private JTextField campoApellido2;
-	private JList listaTitulacion;
-	private JList listaCategoria;
+	private JList<TitulacionMasajista> listaTitulacion;
+	private JList<Categoria> listaCategoria;
 	private Club club;
 	private JSpinner spinnerAnnosExp;
 	private Component frame;
@@ -127,7 +127,7 @@ public class AnnadirMasajista extends JDialog {
 				scrollPane.setBounds(250, 205, 120, 71);
 				panel.add(scrollPane);
 				{
-					listaTitulacion = new JList(TitulacionMasajista.values());
+					listaTitulacion = new JList<TitulacionMasajista>(TitulacionMasajista.values());
 					listaTitulacion.setSelectedIndex(0);
 					scrollPane.setViewportView(listaTitulacion);
 					listaTitulacion
@@ -140,7 +140,7 @@ public class AnnadirMasajista extends JDialog {
 				scrollPane.setBounds(469, 205, 113, 71);
 				panel.add(scrollPane);
 				{
-					listaCategoria = new JList(Categoria.values());
+					listaCategoria = new JList<Categoria>(Categoria.values());
 					listaCategoria.setSelectedIndex(0);
 					scrollPane.setViewportView(listaCategoria);
 					listaCategoria
@@ -169,6 +169,9 @@ public class AnnadirMasajista extends JDialog {
 							JOptionPane.showMessageDialog(null,
 									"Masajista añadido con éxito");
 							club.setModificado(true);
+							campoNombre.setText(null);
+							campoApellido1.setText(null);
+							campoApellido2.setText(null);
 						} catch (NombreInvalidoException
 								| ApellidoInvalidoException
 								| AñoNacimientoInvalidoException

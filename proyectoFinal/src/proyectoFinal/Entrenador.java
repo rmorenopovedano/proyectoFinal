@@ -40,37 +40,37 @@ public class Entrenador extends Miembro implements Sueldos {
 		switch (getNivel()) {
 		case LICENCIADO:
 			if (annosExp == 0)
-				sueldo *= 1.10;
+				sueldo *= 4.10;
 			else if (annosExp > 0 && annosExp < 5)
-				sueldo *= 1.20;
+				sueldo *= 4.20;
 			else
-				sueldo *= 1.30;
+				sueldo *= 4.30;
 			return sueldo;
 		case NIVEL2:
 			if (annosExp == 0)
-				sueldo *= 1.09;
+				sueldo *= 4.09;
 			else if (annosExp > 0 && annosExp < 5)
-				sueldo *= 1.19;
+				sueldo *= 4.19;
 			else
-				sueldo *= 1.29;
+				sueldo *= 4.29;
 			return sueldo;
 
 		case NIVEL1:
 			if (annosExp == 0)
-				sueldo *= 1.07;
+				sueldo *= 4.07;
 			else if (annosExp > 0 && annosExp < 5)
-				sueldo *= 1.17;
+				sueldo *= 4.17;
 			else
-				sueldo *= 1.27;
+				sueldo *= 4.27;
 			return sueldo;
 
 		case MONITOR:
 			if (annosExp == 0)
-				sueldo *= 1.05;
+				sueldo *= 4.05;
 			else if (annosExp > 0 && annosExp < 5)
-				sueldo *= 1.15;
+				sueldo *= 4.15;
 			else
-				sueldo *= 1.25;
+				sueldo *= 4.25;
 			return sueldo;
 		}
 		return 0;

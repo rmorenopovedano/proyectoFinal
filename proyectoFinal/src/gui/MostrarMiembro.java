@@ -60,14 +60,14 @@ public class MostrarMiembro extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		comboBox = new JComboBox(club.getMiembrosParaLista());
+		comboBox = new JComboBox<String>(club.getMiembrosParaLista());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(comboBox.getItemCount()>0){
 				String temp = (String) comboBox.getSelectedItem();
 				String[] partes = temp.split(".-");
-				Miembro juga = club.get(Integer.parseInt(partes[0]));
-				if(juga.getTipo().equals(Tipo.ENTRENADOR) || juga.getTipo().equals(Tipo.MASAJISTA)){
+				Miembro miembro = club.get(Integer.parseInt(partes[0]));
+				if(miembro.getTipo().equals(Tipo.ENTRENADOR) || miembro.getTipo().equals(Tipo.MASAJISTA)){
 					annoNacimiento.setVisible(false);
 					lblFNac.setVisible(false);
 					lblSueldo.setBounds(10, 71, 70, 14);
@@ -81,13 +81,13 @@ public class MostrarMiembro extends JDialog {
 					sueldoJugador.setBounds(363, 72, 57, 14);
 					label.setBounds(421, 72, 45, 14);
 				}
-				nombreJugador.setText(juga.getNombre());
-				apellido1Jugador.setText(juga.getApellido1());
-				apellido2Jugador.setText(juga.getApellido2());
-				annoNacimiento.setText(juga.getAñoNacimiento());
-				sueldoJugador.setText((String.valueOf(juga.getSueldo())));
-				categoriaJugador.setText(String.valueOf(juga.getCategoria()));
-				campoTipo.setText(String.valueOf(juga.getTipo()));
+				nombreJugador.setText(miembro.getNombre());
+				apellido1Jugador.setText(miembro.getApellido1());
+				apellido2Jugador.setText(miembro.getApellido2());
+				annoNacimiento.setText(miembro.getAñoNacimiento());
+				sueldoJugador.setText((String.valueOf(miembro.getSueldo())));
+				categoriaJugador.setText(String.valueOf(miembro.getCategoria()));
+				campoTipo.setText(String.valueOf(miembro.getTipo()));
 				}
 			}
 		});

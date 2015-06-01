@@ -24,6 +24,7 @@ import proyectoFinal.ValorNegativoException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
@@ -43,7 +44,7 @@ public class AnnadirJugador extends JDialog {
 	private JTextField campoApellido1;
 	private JTextField campoApellido2;
 	private JTextField campoAnno;
-	private JList listaDemarcacion;
+	private JList<DemarcacionJugador> listaDemarcacion;
 	private JSpinner spinnerDorsal;
 	private JSpinner spinnerPartidosJugados;
 	private JSpinner spinnerGoles;
@@ -53,7 +54,6 @@ public class AnnadirJugador extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	@SuppressWarnings("unchecked")
 	public AnnadirJugador(Club club2) {
 		setResizable(false);
 		setModal(true);
@@ -133,7 +133,7 @@ public class AnnadirJugador extends JDialog {
 			scrollPane.setBounds(107, 208, 127, 67);
 			contentPanel.add(scrollPane);
 			{
-				listaDemarcacion = new JList(DemarcacionJugador.values());
+				listaDemarcacion = new JList<DemarcacionJugador>(DemarcacionJugador.values());
 				listaDemarcacion.setSelectedIndex(0);
 				scrollPane.setViewportView(listaDemarcacion);
 				listaDemarcacion
@@ -176,6 +176,10 @@ public class AnnadirJugador extends JDialog {
 									(int) spinnerGoles.getValue()));
 							JOptionPane.showMessageDialog(null, "Jugador añadido con éxito");
 							club.setModificado(true);
+							campoNombre.setText(null);
+							campoApellido1.setText(null);
+							campoApellido2.setText(null);
+							campoAnno.setText(null);
 						} catch (NombreInvalidoException
 								| ApellidoInvalidoException
 								| AñoNacimientoInvalidoException

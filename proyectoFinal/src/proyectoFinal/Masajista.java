@@ -39,27 +39,27 @@ public class Masajista extends Miembro implements Sueldos {
 		switch (getTitulacion()) {
 		case FISIOTERAPEUTA:
 			if (annosExperiencia == 0)
-				sueldo *= 2 * 0.6;
+				sueldo *= 3 * 0.6;
 			else if (annosExperiencia > 0 && annosExperiencia < 5)
-				sueldo *= 2 * 0.7;
+				sueldo *= 3 * 0.7;
 			else
-				sueldo *= 2 * 0.8;
+				sueldo *= 3 * 0.8;
 			return sueldo;
 		case OSTEOPATA:
 			if (annosExperiencia == 0)
-				sueldo *= 2 * 0.4;
+				sueldo *= 3 * 0.4;
 			else if (annosExperiencia > 0 && annosExperiencia < 5)
-				sueldo *= 2 * 0.5;
+				sueldo *= 3 * 0.5;
 			else
-				sueldo *= 2 * 0.6;
+				sueldo *= 3 * 0.6;
 			return sueldo;
 		case QUIROMASAJISTA:
 			if (annosExperiencia == 0)
-				sueldo *= 2 * 0.3;
+				sueldo *= 3 * 0.3;
 			else if (annosExperiencia > 0 && annosExperiencia < 5)
-				sueldo *= 2 * 0.4;
+				sueldo *= 3 * 0.4;
 			else
-				sueldo *= 2 * 0.5;
+				sueldo *= 3 * 0.5;
 			return sueldo;
 		}
 		return 0;

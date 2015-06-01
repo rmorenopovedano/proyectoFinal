@@ -42,10 +42,10 @@ public class AnnadirEntrenador extends JDialog {
 	private JTextField campoNombre;
 	private JTextField campoApellido1;
 	private JTextField campoApellido2;
-	private JList listaTitulacion;
+	private JList<NivelEntrenador> listaTitulacion;
 	private Club club;
 	private JSpinner spinnerAnnosExp;
-	private JList listaCategorias;
+	private JList<Categoria> listaCategorias;
 	private Component frame;
 
 	/**
@@ -122,7 +122,7 @@ public class AnnadirEntrenador extends JDialog {
 				scrollPane.setBounds(244, 197, 102, 67);
 				panel.add(scrollPane);
 
-				listaTitulacion = new JList(NivelEntrenador.values());
+				listaTitulacion = new JList<NivelEntrenador>(NivelEntrenador.values());
 				listaTitulacion.setSelectedIndex(0);
 				scrollPane.setViewportView(listaTitulacion);
 				listaTitulacion
@@ -134,7 +134,7 @@ public class AnnadirEntrenador extends JDialog {
 				scrollPane.setBounds(472, 197, 110, 67);
 				panel.add(scrollPane);
 				{
-					listaCategorias = new JList(Categoria.values());
+					listaCategorias = new JList<Categoria>(Categoria.values());
 					listaCategorias.setSelectedIndex(0);
 					scrollPane.setViewportView(listaCategorias);
 					listaCategorias
@@ -168,6 +168,9 @@ public class AnnadirEntrenador extends JDialog {
 							JOptionPane.showMessageDialog(null,
 									"Entrenador añadido con éxito");
 							club.setModificado(true);
+							campoNombre.setText(null);
+							campoApellido1.setText(null);
+							campoApellido2.setText(null);
 						} catch (NombreInvalidoException
 								| ApellidoInvalidoException
 								| AñoNacimientoInvalidoException
@@ -179,6 +182,7 @@ public class AnnadirEntrenador extends JDialog {
 						}
 
 					}
+
 				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);

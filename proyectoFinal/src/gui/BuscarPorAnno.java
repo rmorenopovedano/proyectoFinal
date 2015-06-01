@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 
 import proyectoFinal.Club;
 import proyectoFinal.Miembro;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -27,7 +28,7 @@ public class BuscarPorAnno extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
 	private MostrarMiembro mostrarMiembro;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private Component frame;
 
 	/**
@@ -54,7 +55,7 @@ public class BuscarPorAnno extends JDialog {
 				anyos[pos] = Integer.toString(i);
 				pos++;
 			}
-			comboBox = new JComboBox(anyos);
+			comboBox = new JComboBox<String>(anyos);
 			comboBox.setBounds(177, 55, 94, 20);
 			contentPanel.add(comboBox);
 		}

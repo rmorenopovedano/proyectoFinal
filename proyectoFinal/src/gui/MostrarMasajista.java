@@ -33,11 +33,10 @@ public class MostrarMasajista extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	private JLabel campoApellido2;
 	private JLabel campoApellido1;
 	private JLabel campoNombre;
-	private JLabel campoAnnoNac;
 	private JLabel campoSueldo;
 	private JLabel campoAnnosExp;
 	private JLabel campoCategoria;
@@ -69,7 +68,7 @@ public class MostrarMasajista extends JDialog {
 				lblTitulacion = new JLabel("Titulaci\u00F3n:");
 				lblTitulacion.setForeground(Color.BLUE);
 				lblTitulacion.setFont(new Font("Arial", Font.BOLD, 13));
-				lblTitulacion.setBounds(10, 185, 137, 15);
+				lblTitulacion.setBounds(10, 185, 97, 15);
 				panel.add(lblTitulacion);
 			}
 			{
@@ -86,7 +85,7 @@ public class MostrarMasajista extends JDialog {
 			}
 			{
 				campoTitulacion = new JLabel("");
-				campoTitulacion.setBounds(89, 186, 90, 14);
+				campoTitulacion.setBounds(89, 186, 125, 14);
 				panel.add(campoTitulacion);
 			}
 			{
@@ -105,31 +104,19 @@ public class MostrarMasajista extends JDialog {
 				JLabel label = new JLabel("\u20AC");
 				label.setForeground(Color.BLUE);
 				label.setFont(new Font("Arial", Font.BOLD, 13));
-				label.setBounds(378, 81, 66, 14);
+				label.setBounds(164, 81, 66, 14);
 				panel.add(label);
 			}
 			{
 				campoSueldo = new JLabel("");
-				campoSueldo.setBounds(297, 81, 46, 14);
+				campoSueldo.setBounds(83, 81, 46, 14);
 				panel.add(campoSueldo);
 			}
 			{
 				JLabel label = new JLabel("Sueldo:");
 				label.setForeground(Color.BLUE);
 				label.setFont(new Font("Arial", Font.BOLD, 13));
-				label.setBounds(224, 80, 49, 15);
-				panel.add(label);
-			}
-			{
-				campoAnnoNac = new JLabel("");
-				campoAnnoNac.setBounds(125, 81, 46, 14);
-				panel.add(campoAnnoNac);
-			}
-			{
-				JLabel label = new JLabel("A\u00F1o Nacimiento:");
-				label.setForeground(Color.BLUE);
-				label.setFont(new Font("Arial", Font.BOLD, 13));
-				label.setBounds(10, 80, 105, 15);
+				label.setBounds(10, 80, 49, 15);
 				panel.add(label);
 			}
 			{
@@ -180,7 +167,7 @@ public class MostrarMasajista extends JDialog {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			comboBox = new JComboBox(club.getMasajistasParaLista());
+			comboBox = new JComboBox<String>(club.getMasajistasParaLista());
 			comboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String temp = (String) comboBox.getSelectedItem();
@@ -190,7 +177,6 @@ public class MostrarMasajista extends JDialog {
 					campoNombre.setText(masajista.getNombre());
 					campoApellido1.setText(masajista.getApellido1());
 					campoApellido2.setText(masajista.getApellido2());
-					campoAnnoNac.setText(masajista.getAñoNacimiento());
 					campoAnnosExp.setText(String.valueOf(((Masajista) masajista).getAnnosExperiencia()));
 					campoCategoria.setText(String.valueOf(masajista.getCategoria()));
 					campoSueldo.setText(String.valueOf(masajista.getSueldo()));

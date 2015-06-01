@@ -26,7 +26,7 @@ public class BuscarCategoria extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox comboBox;
+	private JComboBox<Categoria> comboBox;
 	private MostrarMiembro mostrarMiembro;
 	private Component frame;
 
@@ -45,7 +45,7 @@ public class BuscarCategoria extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		comboBox = new JComboBox(Categoria.values());
+		comboBox = new JComboBox<Categoria>(Categoria.values());
 		comboBox.setBounds(147, 32, 133, 26);
 		contentPanel.add(comboBox);
 		{
