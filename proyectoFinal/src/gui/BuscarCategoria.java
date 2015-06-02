@@ -17,6 +17,7 @@ import proyectoFinal.Miembro;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 public class BuscarCategoria extends JDialog {
 
@@ -38,7 +39,7 @@ public class BuscarCategoria extends JDialog {
 		setModal(true);
 		setTitle("Buscar por Categor\u00EDa");
 		club = club2;
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 334, 184);
 		setLocationRelativeTo(frame);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,8 +47,13 @@ public class BuscarCategoria extends JDialog {
 		contentPanel.setLayout(null);
 
 		comboBox = new JComboBox<Categoria>(Categoria.values());
-		comboBox.setBounds(147, 32, 133, 26);
+		comboBox.setBounds(185, 52, 133, 26);
 		contentPanel.add(comboBox);
+		{
+			JLabel lblSeleccionarCategora = new JLabel("Seleccionar categor\u00EDa:");
+			lblSeleccionarCategora.setBounds(33, 58, 145, 14);
+			contentPanel.add(lblSeleccionarCategora);
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));

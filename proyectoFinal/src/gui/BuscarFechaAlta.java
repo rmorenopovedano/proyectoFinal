@@ -41,7 +41,7 @@ public class BuscarFechaAlta extends JDialog {
 		setTitle("Buscar por Fecha de Alta");
 		setResizable(false);
 		setModal(true);
-		setBounds(100, 100, 376, 215);
+		setBounds(100, 100, 278, 157);
 		setLocationRelativeTo(frame);
 		club = club2;
 		getContentPane().setLayout(new BorderLayout());
@@ -50,13 +50,13 @@ public class BuscarFechaAlta extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblIntroducirFecha = new JLabel("Introducir Fecha:");
-			lblIntroducirFecha.setBounds(94, 71, 121, 14);
+			lblIntroducirFecha.setBounds(27, 42, 121, 14);
 			contentPanel.add(lblIntroducirFecha);
 		}
 
 		campoFechaAlta = new JTextField();
 		campoFechaAlta.setText("dd/MM/yyyy");
-		campoFechaAlta.setBounds(186, 68, 71, 20);
+		campoFechaAlta.setBounds(143, 39, 71, 20);
 		contentPanel.add(campoFechaAlta);
 		campoFechaAlta.setColumns(10);
 		{

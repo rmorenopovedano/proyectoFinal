@@ -33,7 +33,7 @@ public class MostrarMasajista extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox<String> comboBox;
+	private JComboBox<String>comboBox;
 	private JLabel campoApellido2;
 	private JLabel campoApellido1;
 	private JLabel campoNombre;
@@ -237,6 +237,7 @@ public class MostrarMasajista extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		comboBox.setSelectedIndex(0);
 	}
 
 }

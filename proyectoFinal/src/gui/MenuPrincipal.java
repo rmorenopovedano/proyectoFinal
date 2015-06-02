@@ -183,6 +183,9 @@ public class MenuPrincipal {
 			}
 		});
 		mnAadir.add(mntmMasajista_1);
+		
+		JSeparator separator_1 = new JSeparator();
+		mnClub.add(separator_1);
 
 		JMenu mnMostrar = new JMenu("Mostrar");
 		mnClub.add(mnMostrar);
@@ -402,5 +405,4 @@ public class MenuPrincipal {
 		return true;
 
 	}
-
 }

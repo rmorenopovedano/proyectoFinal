@@ -29,7 +29,7 @@ public class MostrarMiembro extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox<String> comboBox;
+	private JComboBox<String>comboBox;
 	private JPanel panelDetalle;
 	private JLabel nombreJugador;
 	private JLabel apellido1Jugador;
@@ -200,5 +200,6 @@ public class MostrarMiembro extends JDialog {
 				buttonPane.add(volverButton);
 			}
 		}
+		comboBox.setSelectedIndex(0);
 	}
 }

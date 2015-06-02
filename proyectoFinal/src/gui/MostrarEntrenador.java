@@ -233,5 +233,6 @@ public class MostrarEntrenador extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		comboBox.setSelectedIndex(0);
 	}
 }

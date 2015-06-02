@@ -1,26 +1,26 @@
 package proyectoFinal;
 
-public class Jugador extends Miembro implements Sueldos{
+public class Jugador extends Miembro implements Sueldos {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private int dorsal;
 	private DemarcacionJugador demarcacion;
-//	private ArrayList<Premios> premios;
+	// private ArrayList<Premios> premios;
 	private int partidosJugados;
 	private int golesMarcados;
 
 	public Jugador(String nombre, String apellido1, String apellido2,
-			String añoNacimiento,
-			int partidosJugados, int dorsal, DemarcacionJugador demarcacion, int golesMarcados)
+			String añoNacimiento, int partidosJugados, int dorsal,
+			DemarcacionJugador demarcacion, int golesMarcados)
 			throws NombreInvalidoException, ApellidoInvalidoException,
 			AñoNacimientoInvalidoException, ValorNegativoException {
 		super(Tipo.JUGADOR, nombre, apellido1, apellido2, añoNacimiento);
 		setDorsal(dorsal);
 		setDemarcacion(demarcacion);
-//		setAltura(altura);
-//		setPremios(premios);
+		// setAltura(altura);
+		// setPremios(premios);
 		setPartidosJugados(partidosJugados);
 		setGolesMarcados(golesMarcados);
 		super.setSueldo(calcularSueldo(Miembro.getSueldoBase()));
@@ -46,13 +46,13 @@ public class Jugador extends Miembro implements Sueldos{
 		return dorsal;
 	}
 
-//	public ArrayList<Premios> getPremios() {
-//		return premios;
-//	}
+	// public ArrayList<Premios> getPremios() {
+	// return premios;
+	// }
 
-//	public void setPremios(ArrayList<Premios> premios) {
-//		this.premios = premios;
-//	}
+	// public void setPremios(ArrayList<Premios> premios) {
+	// this.premios = premios;
+	// }
 
 	public void setDorsal(int dorsal) {
 		this.dorsal = dorsal;
@@ -66,13 +66,13 @@ public class Jugador extends Miembro implements Sueldos{
 		this.demarcacion = demarcacion;
 	}
 
-//	public float getAltura() {
-//		return altura;
-//	}
+	// public float getAltura() {
+	// return altura;
+	// }
 
-//	public void setAltura(float altura) {
-//		this.altura = altura;
-//	}
+	// public void setAltura(float altura) {
+	// this.altura = altura;
+	// }
 
 	@Override
 	public float calcularSueldo(float sueldo) {
@@ -85,21 +85,20 @@ public class Jugador extends Miembro implements Sueldos{
 			return sueldo *= 1.15;
 		case CIERRE:
 			return sueldo *= 1.12;
-		case PIVOT:
+		default:
+			// case PIVOT:
 			return sueldo *= 1.20;
 
 		}
-		return 0;
+		// return 0;
 	}
 
-@Override
+	@Override
 	public String toString() {
-		return "Jugador [id="+super.id+", dorsal=" + dorsal + ", demarcacion=" + demarcacion+", sueldo="+sueldo
+		return "Jugador [id=" + super.id + ", dorsal=" + dorsal
+				+ ", demarcacion=" + demarcacion + ", sueldo=" + sueldo
 				+ ", partidosJugados=" + partidosJugados + ", golesMarcados="
 				+ golesMarcados + "]";
 	}
-
-
-		
 
 }

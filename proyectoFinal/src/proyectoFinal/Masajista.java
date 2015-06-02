@@ -53,7 +53,8 @@ public class Masajista extends Miembro implements Sueldos {
 			else
 				sueldo *= 3 * 0.6;
 			return sueldo;
-		case QUIROMASAJISTA:
+			default:
+//		case QUIROMASAJISTA:
 			if (annosExperiencia == 0)
 				sueldo *= 3 * 0.3;
 			else if (annosExperiencia > 0 && annosExperiencia < 5)
@@ -62,7 +63,7 @@ public class Masajista extends Miembro implements Sueldos {
 				sueldo *= 3 * 0.5;
 			return sueldo;
 		}
-		return 0;
+//		return 0;
 	}
 
 	@Override
