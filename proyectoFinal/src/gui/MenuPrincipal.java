@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.EventQueue;
@@ -28,6 +31,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import javax.swing.JSeparator;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class MenuPrincipal {
 
 	private JFrame frame;
@@ -96,7 +104,8 @@ public class MenuPrincipal {
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
-		mntmNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		mntmNuevo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+				InputEvent.CTRL_MASK));
 		mntmNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (comprobarCambios()) {
@@ -109,7 +118,8 @@ public class MenuPrincipal {
 		mnArchivo.add(mntmNuevo);
 
 		JMenuItem mntmAbrir = new JMenuItem("Abrir...");
-		mntmAbrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK));
+		mntmAbrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
+				InputEvent.CTRL_MASK));
 		mntmAbrir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (comprobarCambios())
@@ -119,7 +129,8 @@ public class MenuPrincipal {
 		mnArchivo.add(mntmAbrir);
 
 		JMenuItem mntmGuardar = new JMenuItem("Guardar");
-		mntmGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
+		mntmGuardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G,
+				InputEvent.CTRL_MASK));
 		mntmGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				guardar();
@@ -134,10 +145,10 @@ public class MenuPrincipal {
 			}
 		});
 		mnArchivo.add(mntmGuardarComo);
-		
+
 		JSeparator separator = new JSeparator();
 		mnArchivo.add(separator);
-		
+
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,7 +156,8 @@ public class MenuPrincipal {
 					System.exit(0);
 			}
 		});
-		mntmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
+		mntmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+				InputEvent.CTRL_MASK));
 		mnArchivo.add(mntmSalir);
 
 		JMenu mnClub = new JMenu("Club");
@@ -155,7 +167,8 @@ public class MenuPrincipal {
 		mnClub.add(mnAadir);
 
 		JMenuItem mntmJugador_1 = new JMenuItem("Jugador");
-		mntmJugador_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.ALT_MASK));
+		mntmJugador_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J,
+				InputEvent.ALT_MASK));
 		mntmJugador_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				annadirJugador = new AnnadirJugador(club);
@@ -165,7 +178,8 @@ public class MenuPrincipal {
 		mnAadir.add(mntmJugador_1);
 
 		JMenuItem mntmEntrenador_1 = new JMenuItem("Entrenador");
-		mntmEntrenador_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.ALT_MASK));
+		mntmEntrenador_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+				InputEvent.ALT_MASK));
 		mntmEntrenador_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				annadirEntrenador = new AnnadirEntrenador(club);
@@ -175,7 +189,8 @@ public class MenuPrincipal {
 		mnAadir.add(mntmEntrenador_1);
 
 		JMenuItem mntmMasajista_1 = new JMenuItem("Masajista");
-		mntmMasajista_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_MASK));
+		mntmMasajista_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
+				InputEvent.ALT_MASK));
 		mntmMasajista_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				annadirMasajista = new AnnadirMasajista(club);
@@ -183,7 +198,7 @@ public class MenuPrincipal {
 			}
 		});
 		mnAadir.add(mntmMasajista_1);
-		
+
 		JSeparator separator_1 = new JSeparator();
 		mnClub.add(separator_1);
 
@@ -191,7 +206,8 @@ public class MenuPrincipal {
 		mnClub.add(mnMostrar);
 
 		JMenuItem mntmJugador = new JMenuItem("Jugador");
-		mntmJugador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.SHIFT_MASK));
+		mntmJugador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J,
+				InputEvent.SHIFT_MASK));
 		mntmJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Club clubFiltered = club.getClubFiltradoTipo(Tipo.JUGADOR);
@@ -207,7 +223,8 @@ public class MenuPrincipal {
 		mnMostrar.add(mntmJugador);
 
 		JMenuItem mntmEntrenador = new JMenuItem("Entrenador");
-		mntmEntrenador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.SHIFT_MASK));
+		mntmEntrenador.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+				InputEvent.SHIFT_MASK));
 		mntmEntrenador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Club clubFiltrado = club.getClubFiltradoTipo(Tipo.ENTRENADOR);
@@ -223,7 +240,8 @@ public class MenuPrincipal {
 		mnMostrar.add(mntmEntrenador);
 
 		JMenuItem mntmMasajista = new JMenuItem("Masajista");
-		mntmMasajista.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.SHIFT_MASK));
+		mntmMasajista.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
+				InputEvent.SHIFT_MASK));
 		mntmMasajista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Club clubFiltered = club.getClubFiltradoTipo(Tipo.MASAJISTA);
@@ -272,7 +290,7 @@ public class MenuPrincipal {
 			}
 		});
 		mnBuscar.add(mntmPorAoDe);
-		
+
 		JMenuItem mntmPorFechaDe = new JMenuItem("Por fecha de alta");
 		mntmPorFechaDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -280,42 +298,48 @@ public class MenuPrincipal {
 					JOptionPane.showMessageDialog(null,
 							"No hay miembros en la lista.");
 				else {
-				buscarFechaAlta=new BuscarFechaAlta(club);
-				buscarFechaAlta.setVisible(true);
+					buscarFechaAlta = new BuscarFechaAlta(club);
+					buscarFechaAlta.setVisible(true);
 				}
 			}
 		});
 		mnBuscar.add(mntmPorFechaDe);
-		
+
 		JMenu mnAyuda = new JMenu("Ayuda");
 		menuBar.add(mnAyuda);
-		
+
 		JMenuItem mntmVerLaAyuda = new JMenuItem("Ver la Ayuda");
 		mntmVerLaAyuda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ayuda=new Ayuda();
+				ayuda = new Ayuda();
 				ayuda.setVisible(true);
 			}
 		});
 		mnAyuda.add(mntmVerLaAyuda);
-		
+
 		JMenuItem mntmAcercaDelClub = new JMenuItem("Acerca del Club");
 		mntmAcercaDelClub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				sobreElClub=new SobreElClub();
+				sobreElClub = new SobreElClub();
 				sobreElClub.setVisible(true);
 			}
 		});
 		mnAyuda.add(mntmAcercaDelClub);
 		frame.getContentPane().setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/gui/imagenes/BENJMODAS12.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(MenuPrincipal.class
+				.getResource("/gui/imagenes/BENJMODAS12.jpg")));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(0, 0, 444, 250);
 		frame.getContentPane().add(lblNewLabel);
 	}
 
+	/**
+	 * Método que comprueba si el club ha sido modificado
+	 * 
+	 * @return true si se ha modificado, false en otro caso
+	 */
 	private boolean comprobarCambios() {
 		int entero;
 		if (club.isModificado()) {
@@ -340,6 +364,10 @@ public class MenuPrincipal {
 
 	}
 
+	/**
+	 * Recupera el contenido de un fichero, en caso de que el videoclub se haya
+	 * modificado se pregunta al usuario si desea guardarlo
+	 */
 	protected void abrir() {
 		int entero = filechooser.showOpenDialog(frame);
 		if (entero == JFileChooser.APPROVE_OPTION)
@@ -356,6 +384,12 @@ public class MenuPrincipal {
 
 	}
 
+	/**
+	 * Método que comprueba la forma en la que hay que guardar un archivo
+	 * 
+	 * @return true si se guarda el archivo sin preguntar, false en caso de que
+	 *         el archivo necesite guardarse con otro nombre
+	 */
 	private boolean guardar() {
 		if (fichero != null)
 			return almacenar();
@@ -363,6 +397,11 @@ public class MenuPrincipal {
 			return guardarComo();
 	}
 
+	/**
+	 * Método que guarda un archivo directamente
+	 * 
+	 * @return true si se ha almacenado, false en cualquier otro caso
+	 */
 	private boolean almacenar() {
 		try {
 			fichero = filechooser.getSelectedFile();
@@ -378,6 +417,12 @@ public class MenuPrincipal {
 		return false;
 	}
 
+	/**
+	 * Método que guarda un fichero con un nombre nuevo
+	 * 
+	 * @return true si el fichero se guarda con un nombre nuevo, false en
+	 *         cualquier otro caso
+	 */
 	private boolean guardarComo() {
 		int opcion = filechooser.showSaveDialog(frame);
 		if (opcion == JFileChooser.APPROVE_OPTION)
@@ -387,6 +432,14 @@ public class MenuPrincipal {
 		return false;
 	}
 
+	/**
+	 * Método que comprueba si un archivo existe y pregunta si desea
+	 * sobreescrirse
+	 * 
+	 * @param file2
+	 *            Representa el archivo que vamos a guardar
+	 * @return true si deseamos sobreescribir, false en cualquier otro caso
+	 */
 	protected boolean sobreescribir(File file2) {
 		int entero;
 		if (file2.exists()) {

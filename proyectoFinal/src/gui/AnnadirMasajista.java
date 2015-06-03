@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -32,6 +35,11 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class AnnadirMasajista extends JDialog {
 
 	/**
@@ -103,7 +111,8 @@ public class AnnadirMasajista extends JDialog {
 			}
 			{
 				spinnerAnnosExp = new JSpinner();
-				spinnerAnnosExp.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+				spinnerAnnosExp.setModel(new SpinnerNumberModel(new Integer(0),
+						new Integer(0), null, new Integer(1)));
 				spinnerAnnosExp.setBounds(408, 111, 42, 20);
 				panel.add(spinnerAnnosExp);
 			}
@@ -127,7 +136,8 @@ public class AnnadirMasajista extends JDialog {
 				scrollPane.setBounds(250, 205, 120, 71);
 				panel.add(scrollPane);
 				{
-					listaTitulacion = new JList<TitulacionMasajista>(TitulacionMasajista.values());
+					listaTitulacion = new JList<TitulacionMasajista>(
+							TitulacionMasajista.values());
 					listaTitulacion.setSelectedIndex(0);
 					scrollPane.setViewportView(listaTitulacion);
 					listaTitulacion

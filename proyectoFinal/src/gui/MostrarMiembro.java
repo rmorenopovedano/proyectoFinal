@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -21,6 +24,11 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class MostrarMiembro extends JDialog {
 
 	/**
@@ -29,7 +37,7 @@ public class MostrarMiembro extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox<String>comboBox;
+	private JComboBox<String> comboBox;
 	private JPanel panelDetalle;
 	private JLabel nombreJugador;
 	private JLabel apellido1Jugador;
@@ -63,31 +71,32 @@ public class MostrarMiembro extends JDialog {
 		comboBox = new JComboBox<String>(club.getMiembrosParaLista());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(comboBox.getItemCount()>0){
-				String temp = (String) comboBox.getSelectedItem();
-				String[] partes = temp.split(".-");
-				Miembro miembro = club.get(Integer.parseInt(partes[0]));
-				if(miembro.getTipo().equals(Tipo.ENTRENADOR) || miembro.getTipo().equals(Tipo.MASAJISTA)){
-					annoNacimiento.setVisible(false);
-					lblFNac.setVisible(false);
-					lblSueldo.setBounds(10, 71, 70, 14);
-					sueldoJugador.setBounds(90, 72, 200, 14);
-					label.setBounds(140, 72, 45, 14);
-				}
-				else{
-					annoNacimiento.setVisible(true);
-					lblFNac.setVisible(true);
-					lblSueldo.setBounds(273, 72, 66, 14);
-					sueldoJugador.setBounds(363, 72, 57, 14);
-					label.setBounds(421, 72, 45, 14);
-				}
-				nombreJugador.setText(miembro.getNombre());
-				apellido1Jugador.setText(miembro.getApellido1());
-				apellido2Jugador.setText(miembro.getApellido2());
-				annoNacimiento.setText(miembro.getAñoNacimiento());
-				sueldoJugador.setText((String.valueOf(miembro.getSueldo())));
-				categoriaJugador.setText(String.valueOf(miembro.getCategoria()));
-				campoTipo.setText(String.valueOf(miembro.getTipo()));
+				if (comboBox.getItemCount() > 0) {
+					String temp = (String) comboBox.getSelectedItem();
+					String[] partes = temp.split(".-");
+					Miembro miembro = club.get(Integer.parseInt(partes[0]));
+					if (miembro.getTipo().equals(Tipo.ENTRENADOR)
+							|| miembro.getTipo().equals(Tipo.MASAJISTA)) {
+						annoNacimiento.setVisible(false);
+						lblFNac.setVisible(false);
+						lblSueldo.setBounds(10, 71, 70, 14);
+						sueldoJugador.setBounds(90, 72, 200, 14);
+						label.setBounds(140, 72, 45, 14);
+					} else {
+						annoNacimiento.setVisible(true);
+						lblFNac.setVisible(true);
+						lblSueldo.setBounds(273, 72, 66, 14);
+						sueldoJugador.setBounds(363, 72, 57, 14);
+						label.setBounds(421, 72, 45, 14);
+					}
+					nombreJugador.setText(miembro.getNombre());
+					apellido1Jugador.setText(miembro.getApellido1());
+					apellido2Jugador.setText(miembro.getApellido2());
+					annoNacimiento.setText(miembro.getAñoNacimiento());
+					sueldoJugador.setText((String.valueOf(miembro.getSueldo())));
+					categoriaJugador.setText(String.valueOf(miembro
+							.getCategoria()));
+					campoTipo.setText(String.valueOf(miembro.getTipo()));
 				}
 			}
 		});
@@ -126,47 +135,47 @@ public class MostrarMiembro extends JDialog {
 		sueldoJugador = new JLabel("");
 		sueldoJugador.setBounds(363, 72, 57, 14);
 		panelDetalle.add(sueldoJugador);
-		
+
 		campoTipo = new JLabel("");
 		campoTipo.setBounds(90, 124, 89, 14);
 		panelDetalle.add(campoTipo);
-		
+
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 13));
 		lblNombre.setForeground(new Color(0, 0, 255));
 		lblNombre.setBounds(10, 23, 57, 14);
 		panelDetalle.add(lblNombre);
-		
+
 		JLabel lblApellidos = new JLabel("Apellidos:");
 		lblApellidos.setFont(new Font("Arial", Font.BOLD, 13));
 		lblApellidos.setForeground(new Color(0, 0, 255));
 		lblApellidos.setBounds(184, 22, 90, 14);
 		panelDetalle.add(lblApellidos);
-		
+
 		lblFNac = new JLabel("A\u00F1o Nacimiento:");
 		lblFNac.setForeground(new Color(0, 0, 255));
 		lblFNac.setFont(new Font("Arial", Font.BOLD, 13));
 		lblFNac.setBounds(10, 71, 125, 14);
 		panelDetalle.add(lblFNac);
-		
+
 		JLabel lblCategora = new JLabel("Categor\u00EDa:");
 		lblCategora.setForeground(new Color(0, 0, 255));
 		lblCategora.setFont(new Font("Arial", Font.BOLD, 13));
 		lblCategora.setBounds(243, 123, 79, 14);
 		panelDetalle.add(lblCategora);
-		
+
 		lblSueldo = new JLabel("Sueldo:");
 		lblSueldo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblSueldo.setForeground(new Color(0, 0, 255));
 		lblSueldo.setBounds(273, 72, 66, 14);
 		panelDetalle.add(lblSueldo);
-		
+
 		lblTipo = new JLabel("Tipo:");
 		lblTipo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblTipo.setForeground(new Color(0, 0, 255));
 		lblTipo.setBounds(10, 123, 78, 14);
 		panelDetalle.add(lblTipo);
-		
+
 		label = new JLabel("\u20AC");
 		label.setForeground(Color.BLUE);
 		label.setFont(new Font("Arial", Font.BOLD, 13));
@@ -183,13 +192,13 @@ public class MostrarMiembro extends JDialog {
 						setVisible(false);
 					}
 				});
-				
+
 				btnOrdenar = new JButton("ORDENAR");
 				btnOrdenar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						club.ordenar();
 						comboBox.removeAllItems();
-						for(String s:club.getMiembrosParaLista()){
+						for (String s : club.getMiembrosParaLista()) {
 							comboBox.addItem(s);
 						}
 					}

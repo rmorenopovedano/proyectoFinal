@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -19,6 +22,11 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class BuscarCategoria extends JDialog {
 
 	/**
@@ -50,7 +58,8 @@ public class BuscarCategoria extends JDialog {
 		comboBox.setBounds(185, 52, 133, 26);
 		contentPanel.add(comboBox);
 		{
-			JLabel lblSeleccionarCategora = new JLabel("Seleccionar categor\u00EDa:");
+			JLabel lblSeleccionarCategora = new JLabel(
+					"Seleccionar categor\u00EDa:");
 			lblSeleccionarCategora.setBounds(33, 58, 145, 14);
 			contentPanel.add(lblSeleccionarCategora);
 		}
@@ -64,13 +73,14 @@ public class BuscarCategoria extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Club clubCategoria = getPorCategoria((Categoria) comboBox
 								.getSelectedItem());
-						if(clubCategoria.isEmpty())
-							JOptionPane.showMessageDialog(frame, "No hay miembros en esta categoría");
-						else{
+						if (clubCategoria.isEmpty())
+							JOptionPane.showMessageDialog(frame,
+									"No hay miembros en esta categoría");
+						else {
 							mostrarMiembro = new MostrarMiembro(clubCategoria);
 							mostrarMiembro.setVisible(true);
 						}
-						
+
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -90,6 +100,13 @@ public class BuscarCategoria extends JDialog {
 		}
 	}
 
+	/**
+	 * Obtiene un club con miembros de la misma categoría
+	 * 
+	 * @param categoria
+	 *            Representa la categoría a buscar
+	 * @return Club de miembros con la misma categoría
+	 */
 	protected Club getPorCategoria(Categoria categoria) {
 		ArrayList<Miembro> arraylist = club.getMiembrosCategoria(categoria);
 		Club clubPorCategoria = new Club();

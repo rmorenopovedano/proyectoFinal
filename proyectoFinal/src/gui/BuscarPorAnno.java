@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -20,6 +23,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class BuscarPorAnno extends JDialog {
 
 	/**
@@ -48,11 +56,11 @@ public class BuscarPorAnno extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			SimpleDateFormat formato = new SimpleDateFormat("yyyy");
-			int diferencia = Integer.parseInt(formato.format(new Date()))
-					- 2015 +1;
-			String anyos [] = new String[diferencia];
+			int diferencia = Integer.parseInt(formato.format(new Date())) - 2015 + 1;
+			String anyos[] = new String[diferencia];
 			int pos = 0;
-			for(int i = 2015; i<(Integer.parseInt(formato.format(new Date()))+1); i++){
+			for (int i = 2015; i < (Integer
+					.parseInt(formato.format(new Date())) + 1); i++) {
 				anyos[pos] = Integer.toString(i);
 				pos++;
 			}
@@ -60,7 +68,7 @@ public class BuscarPorAnno extends JDialog {
 			comboBox.setBounds(159, 55, 94, 20);
 			contentPanel.add(comboBox);
 		}
-		
+
 		JLabel lblSeleccionarFecha = new JLabel("Seleccionar fecha:");
 		lblSeleccionarFecha.setBounds(37, 58, 122, 14);
 		contentPanel.add(lblSeleccionarFecha);
@@ -72,8 +80,9 @@ public class BuscarPorAnno extends JDialog {
 				JButton okButton = new JButton("ACEPTAR");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Club clubPorAnno=getPorAnno((String) comboBox.getSelectedItem());
-						mostrarMiembro=new MostrarMiembro(clubPorAnno);
+						Club clubPorAnno = getPorAnno((String) comboBox
+								.getSelectedItem());
+						mostrarMiembro = new MostrarMiembro(clubPorAnno);
 						mostrarMiembro.setVisible(true);
 					}
 				});
@@ -93,6 +102,14 @@ public class BuscarPorAnno extends JDialog {
 			}
 		}
 	}
+
+	/**
+	 * Obtiene un Club de miembros inscritos en el mismo año
+	 * 
+	 * @param fechaAlta
+	 *            Representa el año de inscripción a buscar
+	 * @return Club de miembros inscritos el mismo año
+	 */
 	protected Club getPorAnno(String fechaAlta) {
 		ArrayList<Miembro> arraylist = club.getMiembrosPorAnno(fechaAlta);
 		Club clubPorAnno = new Club();

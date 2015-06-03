@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -23,6 +26,11 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class MostrarEntrenador extends JDialog {
 
 	/**
@@ -58,7 +66,7 @@ public class MostrarEntrenador extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblElegirEntrenador = new JLabel("Elegir entrenador: ");
-			lblElegirEntrenador.setBounds(58, 22, 90, 14);
+			lblElegirEntrenador.setBounds(43, 22, 110, 14);
 			contentPanel.add(lblElegirEntrenador);
 		}
 
@@ -203,7 +211,8 @@ public class MostrarEntrenador extends JDialog {
 							JOptionPane.showMessageDialog(null,
 									"Entrenador eliminado con éxito");
 							club.setModificado(true);
-							Club clubFiltrado = club.getClubFiltradoTipo(Tipo.ENTRENADOR);
+							Club clubFiltrado = club
+									.getClubFiltradoTipo(Tipo.ENTRENADOR);
 							if (clubFiltrado.size() > 0) {
 								comboBox.removeItemAt(comboBox
 										.getSelectedIndex());

@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -23,6 +26,11 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class MostrarJugador extends JDialog {
 
 	/**
@@ -31,7 +39,7 @@ public class MostrarJugador extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private Club club;
-	private JComboBox<String>comboBox;
+	private JComboBox<String> comboBox;
 	private JPanel panelDetalle;
 	private JLabel nombreJugador;
 	private JLabel apellido1Jugador;
@@ -71,7 +79,7 @@ public class MostrarJugador extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		comboBox = new JComboBox<String>(club.getJugadoresParaLista());
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -204,19 +212,19 @@ public class MostrarJugador extends JDialog {
 		campoDorsal = new JLabel("");
 		campoDorsal.setBounds(390, 155, 46, 14);
 		panelDetalle.add(campoDorsal);
-		
+
 		label_5 = new JLabel("\u20AC");
 		label_5.setForeground(Color.BLUE);
 		label_5.setFont(new Font("Arial", Font.BOLD, 13));
 		label_5.setBounds(390, 61, 66, 14);
 		panelDetalle.add(label_5);
-		
+
 		JLabel lblFechaAlta = new JLabel("Fecha Alta:");
 		lblFechaAlta.setForeground(Color.BLUE);
 		lblFechaAlta.setFont(new Font("Arial", Font.BOLD, 13));
 		lblFechaAlta.setBounds(10, 209, 79, 14);
 		panelDetalle.add(lblFechaAlta);
-		
+
 		campoFechaAlta = new JLabel("");
 		campoFechaAlta.setBounds(89, 210, 84, 14);
 		panelDetalle.add(campoFechaAlta);
@@ -238,9 +246,11 @@ public class MostrarJugador extends JDialog {
 							JOptionPane.showMessageDialog(null,
 									"Jugador eliminado con éxito");
 							club.setModificado(true);
-							// Comprobamos que sigan quedando jugadores en el club. Si no quedan más
+							// Comprobamos que sigan quedando jugadores en el
+							// club. Si no quedan más
 							// mostramos un mensaje y cerramos la ventana.
-							Club clubFiltrado = club.getClubFiltradoTipo(Tipo.JUGADOR);
+							Club clubFiltrado = club
+									.getClubFiltradoTipo(Tipo.JUGADOR);
 							if (clubFiltrado.size() > 0) {
 								comboBox.removeItemAt(comboBox
 										.getSelectedIndex());

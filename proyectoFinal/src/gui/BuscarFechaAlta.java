@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -22,6 +25,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class BuscarFechaAlta extends JDialog {
 
 	/**
@@ -104,6 +112,14 @@ public class BuscarFechaAlta extends JDialog {
 		}
 	}
 
+	/**
+	 * Obtiene un club con miembros con la misma fecha de alta
+	 * 
+	 * @param fecha
+	 *            Representa la fecha de alta a buscar
+	 * @return Club de miembros con la misma fecha de alta
+	 */
+
 	protected Club getPorFechaAlta(String fecha) {
 		ArrayList<Miembro> arraylist = club.getMiembrosFechaAlta(fecha);
 		Club clubPorFechaAlta = new Club();
@@ -114,6 +130,15 @@ public class BuscarFechaAlta extends JDialog {
 		return clubPorFechaAlta;
 	}
 
+	/**
+	 * Método que valida una fecha
+	 * 
+	 * @param fecha
+	 *            Representa la fecha que se quiere validar
+	 * @param patronFecha
+	 *            Representa el patrón válido para validar la fecha
+	 * @return true si la fecha es válida, false en caso contrario
+	 */
 	public boolean validarFecha(String fecha, String patronFecha) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(patronFecha);
 		dateFormat.setLenient(false);

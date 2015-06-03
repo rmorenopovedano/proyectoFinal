@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -24,7 +27,11 @@ import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class MostrarMasajista extends JDialog {
 
 	/**

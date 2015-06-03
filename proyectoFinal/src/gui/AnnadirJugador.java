@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -33,6 +36,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class AnnadirJugador extends JDialog {
 
 	/**
@@ -57,7 +65,7 @@ public class AnnadirJugador extends JDialog {
 	public AnnadirJugador(Club club2) {
 		setResizable(false);
 		setModal(true);
-		club=club2;
+		club = club2;
 		setTitle("A\u00F1adir Jugador");
 		setBounds(100, 100, 750, 400);
 		setLocationRelativeTo(frame);
@@ -119,7 +127,8 @@ public class AnnadirJugador extends JDialog {
 		}
 		{
 			spinnerPartidosJugados = new JSpinner();
-			spinnerPartidosJugados.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+			spinnerPartidosJugados.setModel(new SpinnerNumberModel(new Integer(
+					0), new Integer(0), null, new Integer(1)));
 			spinnerPartidosJugados.setBounds(628, 229, 42, 20);
 			contentPanel.add(spinnerPartidosJugados);
 		}
@@ -133,7 +142,8 @@ public class AnnadirJugador extends JDialog {
 			scrollPane.setBounds(107, 208, 127, 67);
 			contentPanel.add(scrollPane);
 			{
-				listaDemarcacion = new JList<DemarcacionJugador>(DemarcacionJugador.values());
+				listaDemarcacion = new JList<DemarcacionJugador>(
+						DemarcacionJugador.values());
 				listaDemarcacion.setSelectedIndex(0);
 				scrollPane.setViewportView(listaDemarcacion);
 				listaDemarcacion
@@ -148,7 +158,8 @@ public class AnnadirJugador extends JDialog {
 		}
 		{
 			spinnerGoles = new JSpinner();
-			spinnerGoles.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+			spinnerGoles.setModel(new SpinnerNumberModel(new Integer(0),
+					new Integer(0), null, new Integer(1)));
 			spinnerGoles.setBounds(628, 260, 42, 20);
 			contentPanel.add(spinnerGoles);
 		}
@@ -168,13 +179,14 @@ public class AnnadirJugador extends JDialog {
 						try {
 							club.annadir(new Jugador(campoNombre.getText(),
 									campoApellido1.getText(), campoApellido2
-											.getText(), campoAnno
-											.getText(), (int) spinnerPartidosJugados.getValue(),
+											.getText(), campoAnno.getText().trim(),
+									(int) spinnerPartidosJugados.getValue(),
 									(int) spinnerDorsal.getValue(),
 									(DemarcacionJugador) listaDemarcacion
 											.getSelectedValue(),
 									(int) spinnerGoles.getValue()));
-							JOptionPane.showMessageDialog(null, "Jugador añadido con éxito");
+							JOptionPane.showMessageDialog(null,
+									"Jugador añadido con éxito");
 							club.setModificado(true);
 							campoNombre.setText(null);
 							campoApellido1.setText(null);

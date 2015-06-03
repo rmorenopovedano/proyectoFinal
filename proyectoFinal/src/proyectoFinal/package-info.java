@@ -1,6 +1,5 @@
-
 /**
- * Paquete que contiene las clases del programa.
+ * Paquete que contiene la información del programa.
  * @author RAUL MORENO POVEDANO
  * @version 1.0
  */

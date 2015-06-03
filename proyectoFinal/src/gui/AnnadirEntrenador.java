@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package gui;
 
 import java.awt.BorderLayout;
@@ -31,7 +34,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.SpinnerNumberModel;
-
+/**
+ * 
+ * @author RAUL MORENO POVEDANO
+ * @version 1.0
+ */
 public class AnnadirEntrenador extends JDialog {
 
 	/**
