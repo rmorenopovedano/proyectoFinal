@@ -86,6 +86,7 @@ public class Ayuda extends JDialog {
 		setJMenuBar(menuBar);
 
 		JMenu mnArchivo = new JMenu("Archivo");
+		mnArchivo.setMnemonic('a');
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
@@ -139,6 +140,7 @@ public class Ayuda extends JDialog {
 		mnArchivo.add(mntmSalir);
 
 		JMenu mnNewMenu = new JMenu("Club");
+		mnNewMenu.setMnemonic('c');
 		menuBar.add(mnNewMenu);
 
 		JMenu mnNewMenu_1 = new JMenu("A\u00F1adir");
@@ -208,6 +210,7 @@ public class Ayuda extends JDialog {
 		mnNewMenu_2.add(mntmMasajista_1);
 
 		JMenu mnBuscar = new JMenu("Buscar");
+		mnBuscar.setMnemonic('b');
 		menuBar.add(mnBuscar);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("Por categor\u00EDa");
@@ -242,6 +245,7 @@ public class Ayuda extends JDialog {
 		mnBuscar.add(mntmPorFechaDe);
 
 		JMenu mnAyuda = new JMenu("Ayuda");
+		mnAyuda.setMnemonic('h');
 		menuBar.add(mnAyuda);
 
 		JMenuItem mntmVerLaAyuda = new JMenuItem("Ver la ayuda");
@@ -249,7 +253,7 @@ public class Ayuda extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				panelMensaje.setVisible(true);
 				panelMensaje
-						.setText("<h2 text-align: justify>Muestra al usuario un pequeño manual acerca de lo que va a encontrarse en el programa.</h2>");
+						.setText("<h2 text-align: justify>Muestra al usuario un pequeño manual acerca de lo que va a encontrarse en el programa.<ul><li>Alt+a: Despliega el menú Archivo</li><li>Alt+c: Despliega el menú Club</li><li>Alt+b: Despliega el menú Buscar</li><li>Alt+h: Despliega el menú Ayuda</li></ul></h2>");
 			}
 		});
 		mnAyuda.add(mntmVerLaAyuda);

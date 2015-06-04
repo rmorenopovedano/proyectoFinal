@@ -15,6 +15,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import proyectoFinal.Club;
 import proyectoFinal.Fichero;
+import proyectoFinal.Miembro;
 import proyectoFinal.Tipo;
 
 import java.awt.event.ActionListener;
@@ -23,12 +24,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+
 import javax.swing.JSeparator;
 
 /**
@@ -101,6 +105,7 @@ public class MenuPrincipal {
 		frame.setJMenuBar(menuBar);
 
 		JMenu mnArchivo = new JMenu("Archivo");
+		mnArchivo.setMnemonic('a');
 		menuBar.add(mnArchivo);
 
 		JMenuItem mntmNuevo = new JMenuItem("Nuevo");
@@ -112,6 +117,7 @@ public class MenuPrincipal {
 					fichero = null;
 					frame.setTitle("Sin Titulo - C.D. Modas Levante");
 					club = new Club();
+					Miembro.idContador=0;
 				}
 			}
 		});
@@ -161,6 +167,7 @@ public class MenuPrincipal {
 		mnArchivo.add(mntmSalir);
 
 		JMenu mnClub = new JMenu("Club");
+		mnClub.setMnemonic('c');
 		menuBar.add(mnClub);
 
 		JMenu mnAadir = new JMenu("A\u00F1adir");
@@ -257,6 +264,7 @@ public class MenuPrincipal {
 		mnMostrar.add(mntmMasajista);
 
 		JMenu mnBuscar = new JMenu("Buscar");
+		mnBuscar.setMnemonic('b');
 		menuBar.add(mnBuscar);
 
 		JMenuItem mntmPorCategora = new JMenuItem("Por categor\u00EDa");
@@ -306,6 +314,7 @@ public class MenuPrincipal {
 		mnBuscar.add(mntmPorFechaDe);
 
 		JMenu mnAyuda = new JMenu("Ayuda");
+		mnAyuda.setMnemonic('h');
 		menuBar.add(mnAyuda);
 
 		JMenuItem mntmVerLaAyuda = new JMenuItem("Ver la Ayuda");
@@ -376,6 +385,7 @@ public class MenuPrincipal {
 				fichero = filechooser.getSelectedFile();
 				frame.setTitle(fichero.getName() + " - C.D. Modas Levante");
 				club.setModificado(false);
+				actualizarId(club.size());
 			} catch (ClassNotFoundException | IOException e) {
 				JOptionPane.showMessageDialog(frame,
 						"No se ha podido abrir el archivo", "Abrir",
@@ -457,5 +467,13 @@ public class MenuPrincipal {
 		}
 		return true;
 
+	}
+	/**
+	 * Actualiza el id del club
+	 * @param indice Representa el índice a actualizar
+	 * @return índice actualizado
+	 */
+	private int actualizarId(int indice){
+		return Miembro.idContador=indice;
 	}
 }

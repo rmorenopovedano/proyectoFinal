@@ -72,7 +72,7 @@ public class Miembro implements Serializable, Comparable<Miembro> {
 	/**
 	 * Identificador autoincrementable
 	 */
-	private static int idContador;
+	public static int idContador;
 
 	/**
 	 * Construye un miembro por tipo, nombre, apellido1, apellido2 y categoría
